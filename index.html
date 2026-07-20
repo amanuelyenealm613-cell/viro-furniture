@@ -4,128 +4,358 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viro Garden Furniture</title>
+    <!-- Tailwind CSS & FontAwesome Icons -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style> body { font-family: 'Segoe UI', sans-serif; } .modal { transition: opacity 0.25s ease; } </style>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .modal { transition: opacity 0.25s ease; }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- NAV -->
-    <nav class="bg-green-700 text-white p-4 shadow-lg sticky top-0 z-50 flex justify-between items-center">
-        <h1 class="text-2xl font-bold"><i class="fa-solid fa-couch"></i> Viro Furniture</h1>
-        <div class="space-x-4">
-            <button onclick="showSection('landing')" class="hover:text-green-200">ቤት</button>
-            <button onclick="showSection('shop')" class="hover:text-green-200">ምርቶች</button>
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-gradient-to-r from-green-800 to-green-700 text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" onclick="showSection('landing')" class="text-2xl font-bold flex items-center gap-2 tracking-wide">
+                <i class="fa-solid fa-couch text-yellow-400"></i> Viro Furniture
+            </a>
+            <div class="flex items-center gap-4">
+                <button onclick="showSection('landing')" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ቤት</button>
+                <button onclick="showSection('shop')" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ምርቶች</button>
+                <button onclick="accessAdmin()" class="bg-green-900 hover:bg-green-950 text-yellow-400 px-3 py-1.5 rounded-md text-sm font-bold transition cursor-pointer border border-green-600">
+                    <i class="fa-solid fa-lock"></i> አድሚን
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- LANDING -->
-    <div id="landing-section" class="section text-center py-20 bg-emerald-700 text-white">
-        <h1 class="text-5xl font-bold mb-4">Viro Garden Furniture</h1>
-        <p class="text-xl mb-6">ጥራት ያላቸው ፈርኒቸሮች በአምራቹ ዋጋ</p>
-        <a href="tel:+251911123456" class="bg-yellow-500 text-black px-8 py-3 rounded-full font-bold text-lg shadow-xl hover:bg-yellow-400">
-            <i class="fa-solid fa-phone"></i> ለበለጠ መረጃ ይደውሉልን
-        </a>
-    </div>
-
-    <!-- SHOP -->
-    <div id="shop-section" class="section hidden p-6">
-        <h2 class="text-3xl font-bold text-center mb-8 text-green-800">ምርቶቻችን</h2>
-        <div id="products-container" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
-    </div>
-
-    <!-- ADMIN -->
-    <div class="fixed bottom-4 right-4">
-        <button onclick="accessAdmin()" class="bg-gray-800 text-white p-2 rounded-full text-xs opacity-50 hover:opacity-100">Admin</button>
-    </div>
-
-    <!-- ADMIN PANEL -->
-    <div id="admin-panel" class="hidden p-6 bg-white border-t mt-10">
-        <h2 class="text-2xl font-bold mb-4">አድሚን ፓነል</h2>
-        <div class="space-y-2 mb-6">
-            <input id="new-name" placeholder="የምርት ስም" class="border p-2 w-full">
-            <input id="new-price" type="number" placeholder="ዋጋ" class="border p-2 w-full">
-            <input id="new-payment" placeholder="የክፍያ መረጃ (ለምሳሌ ቴሌብር 091...)" class="border p-2 w-full">
-            <input id="new-img" placeholder="የምስል ሊንክ" class="border p-2 w-full">
-            <button onclick="addProduct()" class="bg-green-700 text-white px-4 py-2 rounded">ምርት ጨምር</button>
-        </div>
-        <div id="admin-product-list" class="space-y-2"></div>
-    </div>
-
-    <!-- ORDER MODAL -->
-    <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
-        <div class="bg-white p-6 rounded shadow-xl w-11/12 md:max-w-md">
-            <h3 id="m-name" class="text-xl font-bold"></h3>
-            <p id="m-price" class="text-green-700"></p>
-            <p id="m-payment" class="text-sm text-gray-500 mb-4"></p>
-            <label>ብዛት (Quantity)</label>
-            <input id="m-qty" type="number" value="1" min="1" class="w-full border p-2 mb-4">
-            <button onclick="submitOrder()" class="w-full bg-green-700 text-white p-2 rounded">ትዕዛዝ ላክ</button>
-            <button onclick="closeModal()" class="w-full mt-2 text-red-500">ዝጋ</button>
+    <!-- SECTION 1: LANDING (HERO) -->
+    <div id="landing-section" class="section">
+        <div class="bg-gradient-to-r from-green-950 via-green-800 to-emerald-800 text-white py-24 px-4 text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=800')] bg-cover bg-center"></div>
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-md">Viro Garden Furniture</h1>
+                <p class="text-xl md:text-2xl mb-8 text-green-100 font-light">ጥራት ያላቸው ዘመናዊ የበረንዳና የጓሮ ፈርኒቸሮች በአምራቹ ዋጋ!</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button onclick="showSection('shop')" class="w-full sm:w-auto bg-yellow-500 text-gray-900 font-bold px-8 py-3.5 rounded-full text-lg shadow-lg hover:bg-yellow-400 cursor-pointer transition transform hover:scale-105">
+                        <i class="fa-solid fa-bag-shopping mr-2"></i> ምርቶችን ለመግዛት
+                    </button>
+                    <a href="tel:+251911123456" class="w-full sm:w-auto bg-transparent border-2 border-white text-white font-bold px-8 py-3.5 rounded-full text-lg shadow-lg hover:bg-white hover:text-green-900 cursor-pointer transition transform hover:scale-105 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone-volume text-yellow-400"></i> ለበለጠ መረጃ
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- SECTION 2: SHOP -->
+    <div id="shop-section" class="section hidden container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold text-center text-green-800 mb-2 font-serif">የቪሮ ልዩ ምርቶች</h2>
+        <p class="text-center text-gray-500 mb-10">የሚፈልጉትን መርጠው ማዘዝ ይችላሉ</p>
+        <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
+    </div>
+
+    <!-- SECTION 3: ADMIN PANEL (TOP SECTION) -->
+    <div id="admin-panel" class="section hidden container mx-auto px-4 py-8 bg-white rounded-xl shadow-md my-6 border border-gray-100">
+        <div class="flex justify-between items-center border-b pb-4 mb-6">
+            <h2 class="text-2xl font-bold text-gray-800"><i class="fa-solid fa-gear text-green-700"></i> የምርት ማስተዳደሪያ (Admin Panel)</h2>
+            <button onclick="hideAdmin()" class="bg-red-100 text-red-600 px-3 py-1 rounded hover:bg-red-200 transition font-bold">ፓነሉን ዝጋ</button>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm md:col-span-1">
+                <h3 class="font-bold text-gray-700 mb-3 text-lg">አዲስ ምርት መጫኛ</h3>
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs text-gray-500 font-bold mb-1">የምርት ስም</label>
+                        <input id="new-name" placeholder="ለምሳሌ፡ የበረንዳ ሶፋ" class="w-full border p-2.5 rounded bg-white text-sm focus:outline-green-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-500 font-bold mb-1">ዋጋ (ብር)</label>
+                        <input id="new-price" type="number" placeholder="ለምሳሌ፡ 45000" class="w-full border p-2.5 rounded bg-white text-sm focus:outline-green-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-500 font-bold mb-1">የክፍያ መረጃ</label>
+                        <input id="new-payment" placeholder="ቴሌብር፡ 0911..." class="w-full border p-2.5 rounded bg-white text-sm focus:outline-green-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-500 font-bold mb-1">የምርት ፎቶ (ከጋለሪ ምረጥ)</label>
+                        <input id="new-img-file" type="file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100 cursor-pointer">
+                    </div>
+                    <button onclick="addProduct()" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 rounded shadow cursor-pointer transition mt-2">
+                        <i class="fa-solid fa-plus mr-1"></i> ምርቱን ወደ ገፅ ጨምር
+                    </button>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2 bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm">
+                <h3 class="font-bold text-gray-700 mb-3 text-lg">በገፁ ላይ ያሉ ምርቶች ማስተካከያ</h3>
+                <div id="admin-product-list" class="space-y-2 max-h-[380px] overflow-y-auto pr-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER MODAL (POPUP) -->
+    <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
+        <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeModal()"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100 animate-fade-in">
+            <div class="flex justify-between items-center border-b pb-2 mb-4">
+                <h3 id="m-name" class="text-xl font-bold text-green-800"></h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold cursor-pointer">&times;</button>
+            </div>
+            <p id="m-price" class="text-xl font-extrabold text-green-700 mb-1"></p>
+            <p id="m-payment" class="text-sm bg-yellow-50 text-yellow-800 p-2.5 rounded mb-4 border border-yellow-100 font-medium"></p>
+            
+            <form id="order-form" onsubmit="event.preventDefault(); submitOrder();">
+                <div class="mb-3">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1">ሙሉ ስም</label>
+                    <input type="text" id="customer-name" required class="w-full border p-2 rounded focus:outline-green-600 bg-gray-50">
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1">ስልክ ቁጥር</label>
+                    <input type="tel" id="customer-phone" required class="w-full border p-2 rounded focus:outline-green-600 bg-gray-50">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1">የእቃዎች ብዛት (Quantity)</label>
+                    <div class="flex items-center border rounded bg-gray-50 overflow-hidden w-32">
+                        <button type="button" onclick="updateQty(-1)" class="px-3 py-2 bg-gray-200 hover:bg-gray-300 font-bold text-lg">-</button>
+                        <input id="m-qty" type="number" value="1" min="1" readonly class="w-full text-center bg-transparent font-bold text-gray-800 focus:outline-none">
+                        <button type="button" onclick="updateQty(1)" class="px-3 py-2 bg-gray-200 hover:bg-gray-300 font-bold text-lg">+</button>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button type="button" onclick="getLocation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded font-bold shadow transition flex items-center justify-center gap-2 cursor-pointer">
+                        <span id="location-status"><i class="fa-solid fa-location-crosshairs"></i> የትዕዛዝ ማድረሻ ቦታ (📍 GPS)</span>
+                    </button>
+                </div>
+                <input type="hidden" id="customer-location">
+                <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white p-3 rounded-lg font-bold shadow-lg transition text-center cursor-pointer block">
+                    <i class="fa-solid fa-paper-plane mr-1"></i> ትዕዛዝ ላክ
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        let products = JSON.parse(localStorage.getItem('viro_db')) || [
-            { id: 1, name: "የበረንዳ ሶፋ", price: 5000, payment: "ቴሌብር: 0911000000", img: "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500" }
+        const BOT_TOKEN = '8762925667:AAHOMw311XdcubZWs-dBI1Xz7uS7QgKOVK8';
+        const CHAT_ID = '7303942788'; 
+
+        // Initial default products list
+        let defaultProducts = [
+            { id: 1, name: "የበረንዳ የቀርከሃ ሶፋ", price: 45000, payment: "ቴሌብር: 0911000000 (Aman)", img: "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500" }
         ];
 
+        let products = JSON.parse(localStorage.getItem('viro_db_v2116')) || defaultProducts;
+        let selectedProductIndex = null;
+        let uploadedImageBase64 = "";
+
+        // Handle Image Upload from Gallery
+        document.getElementById('new-img-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedImageBase64 = event.target.result; // Save base64 image string
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         function render() {
-            localStorage.setItem('viro_db', JSON.stringify(products));
-            const container = document.getElementById('products-container');
-            container.innerHTML = products.map((p, i) => `
-                <div class="bg-white p-4 rounded shadow">
-                    <img src="${p.img}" class="w-full h-40 object-cover mb-2 rounded">
-                    <h3 class="font-bold">${p.name}</h3>
-                    <p class="text-green-700">${p.price} ብር</p>
-                    <p class="text-xs text-gray-500">ክፍያ: ${p.payment}</p>
-                    <button onclick="openModal(${i})" class="w-full mt-2 bg-green-700 text-white p-2 rounded">እዘዝ</button>
-                </div>
-            `).join('');
+            localStorage.setItem('viro_db_v2116', JSON.stringify(products));
             
-            // Render Admin List
+            // Render Shop
+            const container = document.getElementById('products-container');
+            if(products.length === 0) {
+                container.innerHTML = `<p class="col-span-full text-center text-gray-400 py-8">ምንም ምርት የለም። አድሚን ገፅ ላይ ገብተው ይጨምሩ።</p>`;
+            } else {
+                container.innerHTML = products.map((p, i) => `
+                    <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="${p.img || 'https://placehold.co/500x350?text=No+Image'}" class="w-full h-56 object-cover bg-gray-100">
+                            <div class="p-5">
+                                <h3 class="font-bold text-xl text-gray-800 mb-1">${p.name}</h3>
+                                <p class="text-green-700 font-black text-lg mb-2">${Number(p.price).toLocaleString()} ብር</p>
+                                <p class="text-xs bg-gray-100 text-gray-600 p-2 rounded flex items-center gap-1"><i class="fa-solid fa-credit-card text-green-600"></i> ${p.payment}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5">
+                            <button onclick="openModal(${i})" class="w-full bg-green-700 hover:bg-green-800 text-white py-2.5 rounded-lg font-bold shadow cursor-pointer transition flex items-center justify-center gap-1">
+                                <i class="fa-solid fa-cart-plus"></i> አሁን እዘዝ
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Render Admin Dashboard list
             const adminList = document.getElementById('admin-product-list');
-            adminList.innerHTML = products.map((p, i) => `
-                <div class="flex justify-between border-b p-2">
-                    ${p.name} <button onclick="deleteProduct(${i})" class="text-red-500">ሰርዝ</button>
-                </div>
-            `).join('');
+            if(products.length === 0) {
+                adminList.innerHTML = `<p class="text-sm text-gray-400 text-center py-4">የተጫነ ምርት የለም</p>`;
+            } else {
+                adminList.innerHTML = products.map((p, i) => `
+                    <div class="flex justify-between items-center bg-white border border-gray-200 p-3 rounded-lg shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <img src="${p.img || 'https://placehold.co/50x50?text=No+Image'}" class="w-10 h-10 object-cover rounded bg-gray-100">
+                            <div>
+                                <p class="font-bold text-sm text-gray-800">${p.name}</p>
+                                <p class="text-xs text-green-700">${Number(p.price).toLocaleString()} ብር</p>
+                            </div>
+                        </div>
+                        <button onclick="deleteProduct(${i})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded transition cursor-pointer text-xs font-bold">
+                            <i class="fa-solid fa-trash-can"></i> ሰርዝ
+                        </button>
+                    </div>
+                `).join('');
+            }
         }
 
         function accessAdmin() {
-            const pass = prompt("የአድሚን የይለፍ ቃል ያስገቡ");
-            if(pass === 'admin123') document.getElementById('admin-panel').classList.remove('hidden');
-            else alert('የተሳሳተ የይለፍ ቃል');
+            const pass = prompt("የአድሚን የይለፍ ቃል ያስገቡ (ኮድ 2116)");
+            if(pass && pass.trim() === '2116') {
+                showSection('admin-panel');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if(pass !== null) {
+                alert('⚠️ የተሳሳተ የይለፍ ቃል! እባክዎ ኮድ 2116 ይጠቀሙ።');
+            }
+        }
+
+        function hideAdmin() {
+            document.getElementById('admin-panel').classList.add('hidden');
+            showSection('shop');
         }
 
         function addProduct() {
+            const name = document.getElementById('new-name').value.trim();
+            const price = document.getElementById('new-price').value.trim();
+            const payment = document.getElementById('new-payment').value.trim();
+
+            if(!name || !price || !payment) {
+                alert("⚠️ እባክዎ ሁሉንም ሳጥኖች በትክክል ይሙሉ!");
+                return;
+            }
+
+            // Use uploaded image or default if empty
+            const finalImg = uploadedImageBase64 || "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500";
+
             products.push({
-                name: document.getElementById('new-name').value,
-                price: document.getElementById('new-price').value,
-                payment: document.getElementById('new-payment').value,
-                img: document.getElementById('new-img').value
+                id: Date.now(),
+                name: name,
+                price: price,
+                payment: payment,
+                img: finalImg
             });
+
+            // Reset inputs
+            document.getElementById('new-name').value = "";
+            document.getElementById('new-price').value = "";
+            document.getElementById('new-payment').value = "";
+            document.getElementById('new-img-file').value = "";
+            uploadedImageBase64 = "";
+
             render();
+            alert("✅ አዲስ ምርት በትክክል ተጨምሯል!");
         }
 
-        function deleteProduct(i) { products.splice(i, 1); render(); }
+        function deleteProduct(i) {
+            if(confirm("ይህንን ምርት በእርግጠኝነት መሰረዝ ይፈልጋሉ?")) {
+                products.splice(i, 1);
+                render();
+            }
+        }
 
         function openModal(i) {
+            selectedProductIndex = i;
             const p = products[i];
             document.getElementById('m-name').innerText = p.name;
-            document.getElementById('m-price').innerText = `ዋጋ: ${p.price} ብር`;
-            document.getElementById('m-payment').innerText = p.payment;
+            document.getElementById('m-price').innerText = `ዋጋ: ${Number(p.price).toLocaleString()} ብር`;
+            document.getElementById('m-payment').innerText = `💳 የክፍያ መመሪያ፡ ${p.payment}`;
+            document.getElementById('m-qty').value = "1";
+            document.getElementById('customer-location').value = "";
+            document.getElementById('location-status').innerHTML = `<i class="fa-solid fa-location-crosshairs"></i> የትዕዛዝ ማድረሻ ቦታ (📍 GPS)`;
+            
             document.getElementById('order-modal').classList.remove('opacity-0', 'pointer-events-none');
         }
 
-        function closeModal() { document.getElementById('order-modal').classList.add('opacity-0', 'pointer-events-none'); }
+        function closeModal() { 
+            document.getElementById('order-modal').classList.add('opacity-0', 'pointer-events-none'); 
+        }
+
+        function updateQty(val) {
+            const qtyInput = document.getElementById('m-qty');
+            let current = parseInt(qtyInput.value) || 1;
+            current += val;
+            if(current < 1) current = 1;
+            qtyInput.value = current;
+        }
+
+        function getLocation() {
+            const status = document.getElementById('location-status');
+            if (navigator.geolocation) {
+                status.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> 📍 መገኛ ቦታዎን በመፈለግ ላይ...`;
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const link = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
+                        document.getElementById('customer-location').value = link;
+                        status.innerHTML = `<i class="fa-solid fa-circle-check text-yellow-400"></i> 📍 ቦታዎ በትክክል ተይዟል!`;
+                    },
+                    (err) => { 
+                        status.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> ⚠️ ስህተት፡ እባክዎ GPS ያብሩ ወይም ፍቃድ ይስጡ`; 
+                    }
+                );
+            } else { 
+                status.innerHTML = `❌ ይህ ስልክ GPS አይደግፍም`; 
+            }
+        }
 
         function submitOrder() {
             const qty = document.getElementById('m-qty').value;
-            const name = document.getElementById('m-name').innerText;
-            const msg = `🛍️ አዲስ ትዕዛዝ\nእቃ: ${name}\nብዛት: ${qty}\nጠቅላላ ዋጋ: ${qty * 5000} ብር`; // Simplified calculation
-            alert("ትዕዛዝ ተልኳል: " + msg);
-            closeModal();
+            const cName = document.getElementById('customer-name').value.trim();
+            const cPhone = document.getElementById('customer-phone').value.trim();
+            const cLoc = document.getElementById('customer-location').value;
+            const p = products[selectedProductIndex];
+            
+            const totalCost = Number(p.price) * parseInt(qty);
+
+            if(!cName || !cPhone) {
+                alert("እባክዎ ስም እና ስልክ ቁጥር ያስገቡ!");
+                return;
+            }
+
+            const telegramMessage = `🛍️ **አዲስ ትዕዛዝ ከቪሮ ፈርኒቸር**\n\n` +
+                                    `📦 **የእቃ ስም:** ${p.name}\n` +
+                                    `🔢 **ብዛት:** ${qty}\n` +
+                                    `💰 **ጠቅላላ ዋጋ:** ${totalCost.toLocaleString()} ብር\n\n` +
+                                    `👤 **የደንበኛ ስም:** ${cName}\n` +
+                                    `📞 **ስልክ ቁጥር:** ${cPhone}\n` +
+                                    `📍 **የመገኛ ቦታ (GPS):** ${cLoc || "ቦታ አልተላከም"}`;
+
+            const data = {
+                chat_id: CHAT_ID,
+                text: telegramMessage,
+                parse_mode: 'Markdown'
+            };
+
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(resData => {
+                if(resData.ok) { 
+                    alert('✅ ትዕዛዝዎ በተሳካ ሁኔታ ወደ ቴሌግራም ተልኳል! በቅርቡ እናገኝዎታለን።'); 
+                    document.getElementById('order-form').reset();
+                    closeModal(); 
+                } else { 
+                    alert('❌ ስህተት ተፈጥሯል፡ ' + resData.description); 
+                }
+            })
+            .catch(error => {
+                alert('❌ ወደ ቴሌግራም መላክ አልተቻለም። የኢንተርኔት ግንኙነትዎን ያረጋግጡ።');
+            });
         }
 
         function showSection(id) {
@@ -133,6 +363,8 @@
             document.getElementById(`${id}-section`).classList.remove('hidden');
         }
 
+        // Initial setup
+        showSection('landing');
         render();
     </script>
 </body>
