@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="am">
 <head>
     <meta charset="UTF-8">
@@ -6,14 +6,70 @@
     <title>Viro Garden Furniture</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>body { font-family: 'Segoe UI', sans-serif; } .modal { transition: opacity 0.25s ease; }</style>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; }
+        .modal { transition: opacity 0.25s ease; }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- NAVIGATION, LANDING, ADMIN, SHOP (Remaining same as before for stability) -->
-    <!-- ... (Keep same HTML as before, just update the MODAL section below) ... -->
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-green-800 text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide flex items-center gap-2">
+                <i class="fa-solid : fa-couch text-yellow-400"></i> Viro Garden Furniture
+            </h1>
+            <div class="flex gap-4">
+                <a href="#shop-section" class="hover:text-yellow-400 font-medium transition">ዕቃዎች</a>
+                <button onclick="openAdminModal()" class="text-xs bg-green-700 hover:bg-green-600 px-3 py-1 rounded transition">አድሚን</button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- UPDATED ORDER MODAL -->
+    <!-- HERO SECTION -->
+    <header class="bg-gradient-to-r from-green-900 to-emerald-800 text-white text-center py-16 px-4">
+        <h2 class="text-3xl md:text-5xl font-black mb-4">ለቤትዎ እና ለጓሮዎ የተመረጡ የቤት እቃዎች</h2>
+        <p class="text-green-100 max-w-xl mx-auto text-sm md:text-base mb-6">ጥራት ያላቸውን የቪሮ ጋርደን ፈርኒቸር ዕቃዎችን እዚህ ይምረጡ፣ በቴሌግራም በቀላሉ ይዘዙ።</p>
+        <a href="#shop-section" class="bg-yellow-500 hover:bg-yellow-400 text-green-950 font-bold px-6 py-3 rounded-full shadow-md inline-block transition">ዕቃዎችን ይመልከቱ</a>
+    </header>
+
+    <!-- SHOP / PRODUCTS SECTION -->
+    <main id="shop-section" class="max-w-6xl mx-auto px-4 py-10">
+        <h3 class="text-2xl font-bold text-center text-green-900 mb-8 flex items-center justify-center gap-2">
+            <i class="fa-solid : fa-store"></i> የመሸጫ መድረክ
+        </h3>
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- ቋሚ የናሙና ዕቃዎች (እነዚህን በአድሚን መቀየር ትችላለህ) -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col">
+                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <i class="fa-solid : fa-image text-4xl"></i>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h4 class="font-bold text-lg text-gray-900 mb-1">የሶፋ ስብስብ (Sofa Set)</h4>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">ለሳሎን ወይም ለበረንዳ የሚሆን ምቹ ሶፋ።</p>
+                    <button onclick="openOrderModal('የሶፋ ስብስብ (Sofa Set)')" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2.5 rounded-lg transition">አሁን እዘዝ</button>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col">
+                <div class="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
+                    <i class="fa-solid : fa-image text-4xl"></i>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <h4 class="font-bold text-lg text-gray-900 mb-1">የካፌ ወንበር እና ጠረጴዛ</h4>
+                    <p class="text-sm text-gray-600 mb-4 flex-grow">ለቤት ውጪ ወይም ለካፌ የሚሆን የፕላስቲክ ራትታን ወንበሮች።</p>
+                    <button onclick="openOrderModal('የካፌ ወንበር እና ጠረጴዛ')" class="w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2.5 rounded-lg transition">አሁን እዘዝ</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 text-center py-6 text-xs mt-12 border-t border-gray-800">
+        <p>&copy; 2026 Viro Garden Furniture. መብቱ በህግ የተጠበቀ ነው።</p>
+    </footer>
+
+    <!-- ORDER MODAL (የማዘዣ ሳጥን ከብዛት ጋር) -->
     <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
         <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeOrderModal()"></div>
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
@@ -46,8 +102,21 @@
                     <input type="file" id="customer-fayda-file" accept="image/*" class="w-full text-xs text-gray-500">
                 </div>
                 
-                <button type="submit" id="submit-btn" class="w-full bg-green-700 text-white p-3 rounded-lg font-bold">ትዕዛዝ ላክ</button>
+                <button type="submit" id="submit-btn" class="w-full bg-green-700 text-white p-3 rounded-lg font-bold shadow-md hover:bg-green-600 transition cursor-pointer">ትዕዛዝ ላክ</button>
             </form>
+        </div>
+    </div>
+
+    <!-- ADMIN MODAL (ፎርማሊቲ) -->
+    <div id="admin-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
+        <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeAdminModal()"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-sm mx-auto rounded-xl shadow-2xl z-50 p-6">
+            <div class="flex justify-between items-center border-b pb-2 mb-4">
+                <h3 class="text-lg font-bold text-gray-800">የአድሚን ገፅ</h3>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold cursor-pointer">&times;</button>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">ዕቃዎችን ለመጨመር ወይም ለመቀየር በቴሌግራም ቦት በኩል ማስተዳደር ይችላሉ።</p>
+            <button onclick="closeAdminModal()" class="w-full bg-gray-200 text-gray-700 p-2 rounded-md font-medium">ዝጋ</button>
         </div>
     </div>
 
@@ -55,7 +124,30 @@
         const BOT_TOKEN = '8762925667:AAHOMw311XdcubZWs-dBI1Xz7uS7QgKOVK8';
         const CHAT_ID = '7303942788'; 
 
-        // UPDATED SUBMISSION LOGIC
+        // MODAL FUNCTIONS
+        function openOrderModal(itemName) {
+            document.getElementById('order-item-name').value = itemName;
+            document.getElementById('modal-product-name').innerText = itemName;
+            const modal = document.getElementById('order-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('order-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // SUBMISSION LOGIC WITH PHOTO ROBUSTNESS
         async function submitOrder(e) {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
@@ -63,7 +155,7 @@
             btn.innerText = "በመላክ ላይ...";
 
             try {
-                // 1. መረጃውን በፅሁፍ እንላክ
+                // 1. መረጃውን በፅሁፍ መጀመሪያ መላክ
                 const msg = `🛍️ አዲስ ትዕዛዝ\n📦 እቃ: ${document.getElementById('order-item-name').value}\n🔢 ብዛት: ${document.getElementById('customer-quantity').value}\n👤 ስም: ${document.getElementById('customer-name').value}\n📞 ስልክ: ${document.getElementById('customer-phone').value}`;
                 
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -72,7 +164,7 @@
                     body: JSON.stringify({ chat_id: CHAT_ID, text: msg })
                 });
 
-                // 2. ፎቶዎችን በየተራ እንላክ (FormData በመጠቀም)
+                // 2. ፎቶዎችን በየተራ መላክ (FormData ሳይበላሽ ለብቻው አሳሹ እንዲልክ ማድረግ)
                 const receiptFile = document.getElementById('customer-receipt-file').files[0];
                 const faydaFile = document.getElementById('customer-fayda-file').files[0];
 
@@ -80,7 +172,7 @@
                     const fd = new FormData();
                     fd.append('chat_id', CHAT_ID);
                     fd.append('photo', receiptFile);
-                    fd.append('caption', '🧾 የደረሰኝ ፎቶ');
+                    fd.append('caption', `🧾 የደረሰኝ ፎቶ\n👤 የደንበኛ ስም: ${document.getElementById('customer-name').value}`);
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd });
                 }
 
@@ -88,7 +180,7 @@
                     const fd = new FormData();
                     fd.append('chat_id', CHAT_ID);
                     fd.append('photo', faydaFile);
-                    fd.append('caption', '🪪 የፋይዳ (መታወቂያ) ፎቶ');
+                    fd.append('caption', `🪪 የፋይዳ (መታወቂያ) ፎቶ\n👤 የደንበኛ ስም: ${document.getElementById('customer-name').value}`);
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fd });
                 }
 
@@ -102,8 +194,6 @@
                 btn.innerText = "ትዕዛዝ ላክ";
             }
         }
-        
-        // ... (Keep the rest of your previous logic/functions as they were) ...
     </script>
 </body>
 </html>
