@@ -198,7 +198,7 @@
                     </button>
                 </div>
                 <input type="hidden" id="customer-location">
-                <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white p-3 rounded-lg font-bold shadow-lg transition text-center cursor-pointer block">
+                <button type="submit" id="submit-btn" class="w-full bg-green-700 hover:bg-green-800 text-white p-3 rounded-lg font-bold shadow-lg transition text-center cursor-pointer block">
                     <i class="fa-solid fa-paper-plane mr-1"></i> <span data-lang-am="ትዕዛዝ እና የክፍያ መረጃ ላክ" data-lang-en="Send Order & Payment Info">ትዕዛዝ እና የክፍያ መረጃ ላክ</span>
                 </button>
             </form>
@@ -225,9 +225,8 @@
         ];
 
         let uploadedImageBase64 = "";
-        let uploadedReceiptBase64 = "";
-        let uploadedFaydaBase64 = "";
         let tempLogoBase64 = "";
+        let selectedProductIndex = null;
 
         // BACKGROUND SLIDER FUNCTIONS
         function changeSlide() {
@@ -241,7 +240,7 @@
             currentSlideIndex = (currentSlideIndex - 1 + sliderImages.length) % sliderImages.length;
             changeSlide();
         }
-        setInterval(nextSlide, 4000); // ራሱ በየ 4 ሰከንዱ ይቀየራል
+        setInterval(nextSlide, 4000);
 
         // LANGUAGE SYSTEM
         function updateLanguageDOM() {
@@ -263,7 +262,7 @@
             document.getElementById('admin-logo-preview').src = companyLogo;
         }
 
-        // FILE EVENT LISTENERS
+        // FILE EVENTS
         document.getElementById('change-logo-file').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -281,24 +280,6 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(event) { uploadedImageBase64 = event.target.result; };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById('customer-receipt-file').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) { uploadedReceiptBase64 = event.target.result; };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.getElementById('customer-fayda-file').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) { uploadedFaydaBase64 = event.target.result; };
                 reader.readAsDataURL(file);
             }
         });
@@ -391,7 +372,14 @@
             });
 
             renderProducts();
-            alert("✅ Added!");
+            alert("✅ Added Successfully!");
+            // Reset fields
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-price').value = '';
+            document.getElementById('new-payment').value = '';
+            document.getElementById('new-video').value = '';
+            document.getElementById('new-img-file').value = '';
+            uploadedImageBase64 = "";
         }
 
         function deleteProduct(i) {
@@ -399,6 +387,7 @@
         }
 
         function openOrderModal(index) {
+            selectedProductIndex = index;
             const p = products[index];
             document.getElementById('modal-product-name').innerText = p.name;
             document.getElementById('modal-product-price').innerText = `${Number(p.price).toLocaleString()} ብር`;
@@ -423,24 +412,85 @@
             }
         }
 
-        function submitOrder(e) {
+        // ፎቶዎችን እና ፅሁፍን በአንድ ላይ ወደ ቴሌግራም መላኪያ ፈንክሽን
+        async function submitOrder(e) {
             e.preventDefault();
-            const message = `🛍️ **አዲስ የቪሮ ትዕዛዝ**\n\n` +
-                            `📦 **እቃ:** ${document.getElementById('order-item-name').value}\n` +
-                            `👤 **ስም:** ${document.getElementById('customer-name').value}\n` +
-                            `📞 **ስልክ:** ${document.getElementById('customer-phone').value}\n` +
-                            `🔗 **የደረሰኝ ሊንክ:** ${document.getElementById('customer-receipt-link').value || "የለም"}\n` +
-                            `📍 **GPS:** ${document.getElementById('customer-location').value || "የለም"}`;
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "በመላክ ላይ... እባክዎ ይጠብቁ...";
 
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.ok) { alert('✅ Sent!'); closeOrderModal(); }
-            });
+            const pName = document.getElementById('order-item-name').value;
+            const cName = document.getElementById('customer-name').value;
+            const cPhone = document.getElementById('customer-phone').value;
+            const rLink = document.getElementById('customer-receipt-link').value || "የለም";
+            const cLoc = document.getElementById('customer-location').value || "የለም";
+
+            const message = `🛍️ **አዲስ የቪሮ ትዕዛዝ**\n\n` +
+                            `📦 **እቃ:** ${pName}\n` +
+                            `👤 **ስም:** ${cName}\n` +
+                            `📞 **ስልክ:** ${cPhone}\n` +
+                            `🔗 **የደረሰኝ ሊንክ:** ${rLink}\n` +
+                            `📍 **GPS:** ${cLoc}`;
+
+            try {
+                // 1. መጀመሪያ ዋናውን የትዕዛዝ መረጃ በፅሁፍ እንልካለን
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
+                });
+
+                // 2. የእቃውን ፎቶ ለመላክ (አድሚኑ የጫነው ፎቶ ካለ)
+                if (selectedProductIndex !== null && products[selectedProductIndex].img) {
+                    const itemImg = products[selectedProductIndex].img;
+                    if (itemImg.startsWith('data:image')) {
+                        // Base64 ከሆነ ወደ Blob ቀይሮ መላክ
+                        const blob = await (await fetch(itemImg)).blob();
+                        const fData = new FormData();
+                        fData.append('chat_id', CHAT_ID);
+                        fData.append('photo', blob, 'product.jpg');
+                        fData.append('caption', `🖼️ የታዘዘው እቃ ፎቶ: ${pName}`);
+                        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
+                    } else {
+                        // መደበኛ የኢንተርኔት ሊንክ ከሆነ በቀጥታ መላክ
+                        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ chat_id: CHAT_ID, photo: itemImg, caption: `🖼️ የታዘዘው እቃ ፎቶ: ${pName}` })
+                        });
+                    }
+                }
+
+                // 3. ደንበኛው የሰቀለውን የደረሰኝ ፎቶ መላክ
+                const receiptInput = document.getElementById('customer-receipt-file');
+                if (receiptInput.files.length > 0) {
+                    const fData = new FormData();
+                    fData.append('chat_id', CHAT_ID);
+                    fData.append('photo', receiptInput.files[0]);
+                    fData.append('caption', `🧾 የክፍያ ደረሰኝ ፎቶ (ከ ${cName})`);
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
+                }
+
+                // 4. ደንበኛው የሰቀለውን የፋይዳ (መታወቂያ) ፎቶ መላክ
+                const faydaInput = document.getElementById('customer-fayda-file');
+                if (faydaInput.files.length > 0) {
+                    const fData = new FormData();
+                    fData.append('chat_id', CHAT_ID);
+                    fData.append('photo', faydaInput.files[0]);
+                    fData.append('caption', `🪪 የፋይዳ (መታወቂያ) ፎቶ (ከ ${cName})`);
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
+                }
+
+                alert('✅ ትዕዛዝዎ እና ፎቶዎችዎ በተሳካ ሁኔታ ተልከዋል!');
+                document.getElementById('order-form').reset();
+                closeOrderModal();
+            } catch (error) {
+                console.error(error);
+                alert('⚠️ መረጃውን ለመላክ ስህተት አጋጥሟል!');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane mr-1"></i> ትዕዛዝ እና የክፍያ መረጃ ላክ`;
+            }
         }
 
         applyLogo();
