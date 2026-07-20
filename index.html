@@ -156,7 +156,7 @@
         </div>
     </div>
 
-    <!-- ORDER MODAL (የዘመነ የግብይት ገፅ) -->
+    <!-- ORDER MODAL (የዘመነ የግብይት ገፅ ከእቃ ብዛት ማስገቢያ ጋር) -->
     <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
         <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeOrderModal()"></div>
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
@@ -172,6 +172,13 @@
             
             <form id="order-form" onsubmit="submitOrder(event)">
                 <input type="hidden" id="order-item-name">
+                
+                <!-- አዲስ የተጨመረ: የእቃ ብዛት ማስገቢያ -->
+                <div class="mb-3">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የእቃ ብዛት (Quantity)" data-lang-en="Quantity">የእቃ ብዛት (Quantity)</label>
+                    <input type="number" id="customer-quantity" min="1" value="1" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 font-bold">
+                </div>
+
                 <div class="mb-3">
                     <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="ሙሉ ስም" data-lang-en="Full Name">ሙሉ ስም</label>
                     <input type="text" id="customer-name" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50">
@@ -394,6 +401,9 @@
             document.getElementById('modal-payment-info').innerText = `💳 ${p.payment || 'Payment Required'}`;
             document.getElementById('order-item-name').value = p.name;
             
+            // ብዛት ማስገቢያውን ሁልጊዜ ወደ 1 መመለስ
+            document.getElementById('customer-quantity').value = 1;
+            
             const vLink = document.getElementById('modal-video-link');
             if(p.video) { vLink.href = p.video; vLink.classList.remove('hidden'); } 
             else { vLink.classList.add('hidden'); }
@@ -420,13 +430,16 @@
             submitBtn.innerText = "በመላክ ላይ... እባክዎ ይጠብቁ...";
 
             const pName = document.getElementById('order-item-name').value;
+            const cQty = document.getElementById('customer-quantity').value; // አዲስ፡ የብዛት መረጃ
             const cName = document.getElementById('customer-name').value;
             const cPhone = document.getElementById('customer-phone').value;
             const rLink = document.getElementById('customer-receipt-link').value || "የለም";
             const cLoc = document.getElementById('customer-location').value || "የለም";
 
+            // በፅሁፍ መልዕክቱ ውስጥ የብዛት መረጃን አካትተናል
             const message = `🛍️ **አዲስ የቪሮ ትዕዛዝ**\n\n` +
                             `📦 **እቃ:** ${pName}\n` +
+                            `🔢 **ብዛት (Qty):** ${cQty}\n` +
                             `👤 **ስም:** ${cName}\n` +
                             `📞 **ስልክ:** ${cPhone}\n` +
                             `🔗 **የደረሰኝ ሊንክ:** ${rLink}\n` +
@@ -444,19 +457,17 @@
                 if (selectedProductIndex !== null && products[selectedProductIndex].img) {
                     const itemImg = products[selectedProductIndex].img;
                     if (itemImg.startsWith('data:image')) {
-                        // Base64 ከሆነ ወደ Blob ቀይሮ መላክ
                         const blob = await (await fetch(itemImg)).blob();
                         const fData = new FormData();
                         fData.append('chat_id', CHAT_ID);
                         fData.append('photo', blob, 'product.jpg');
-                        fData.append('caption', `🖼️ የታዘዘው እቃ ፎቶ: ${pName}`);
+                        fData.append('caption', `🖼️ የታዘዘው እቃ ፎቶ: ${pName} (ብዛት: ${cQty})`);
                         await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
                     } else {
-                        // መደበኛ የኢንተርኔት ሊንክ ከሆነ በቀጥታ መላክ
                         await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ chat_id: CHAT_ID, photo: itemImg, caption: `🖼️ የታዘዘው እቃ ፎቶ: ${pName}` })
+                            body: JSON.stringify({ chat_id: CHAT_ID, photo: itemImg, caption: `🖼️ የታዘዘው እቃ ፎቶ: ${pName} (ብዛት: ${cQty})` })
                         });
                     }
                 }
@@ -467,7 +478,7 @@
                     const fData = new FormData();
                     fData.append('chat_id', CHAT_ID);
                     fData.append('photo', receiptInput.files[0]);
-                    fData.append('caption', `🧾 የክፍያ ደረሰኝ ፎቶ (ከ ${cName})`);
+                    fData.append('caption', `🧾 የክፍያ ደረሰኝ ፎቶ (ከ ${cName} - እቃ: ${pName})`);
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
                 }
 
