@@ -22,8 +22,10 @@
                 <span class="text-xl font-bold tracking-wider">Viro Furniture</span>
             </a>
             <div class="flex items-center gap-4">
-                <button onclick="showSection('landing')" data-lang-am="ቤት" data-lang-en="Home" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ቤት</button>
-                <button onclick="showSection('shop')" data-lang-am="ምርቶች" data-lang-en="Products" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ምርቶች</button>
+                <button onclick="showSection('landing')" class="hover:text-yellow-300 font-semibold cursor-pointer transition flex items-center gap-1">
+                    <i class="fa-solid fa-house"></i> <span data-lang-am="ቤት" data-lang-en="Home">ቤት</span>
+                </button>
+                <button onclick="showSection('shop')" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ምርቶች</button>
                 
                 <!-- Language Switcher -->
                 <button onclick="toggleLanguage()" class="bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded text-xs font-bold border border-green-500 cursor-pointer">
@@ -84,8 +86,16 @@
         </div>
     </div>
 
-    <!-- SECTION 2: SHOP -->
-    <div id="shop-section" class="section hidden container mx-auto px-4 py-12">
+    <!-- SECTION 2: SHOP (የግብይት ገፅ) -->
+    <div id="shop-section" class="section hidden container mx-auto px-4 py-8">
+        
+        <!-- ወደ መጀመሪያ ገፅ የመመለሻ ቁልፍ (ከላይ በስተግራ በኩል የተጨመረ) -->
+        <div class="flex justify-between items-center mb-6">
+            <button onclick="showSection('landing')" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-2 text-sm">
+                <i class="fa-solid fa-arrow-left"></i> <span data-lang-am="ወደ መጀመሪያ ገጽ ተመለስ" data-lang-en="Back to Home Page">ወደ መጀመሪያ ገጽ ተመለስ</span>
+            </button>
+        </div>
+
         <h2 class="text-3xl font-bold text-center text-green-800 mb-2 font-serif" data-lang-am="የቪሮ ምርቶች ዝርዝር" data-lang-en="Viro Products List">የቪሮ ምርቶች ዝርዝር</h2>
         <p class="text-center text-gray-500 mb-10" data-lang-am="የሚፈልጉትን መርጠው ማዘዝ ይችላሉ" data-lang-en="Select and order what you want">የሚፈልጉትን መርጠው ማዘዝ ይችላሉ</p>
         <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
@@ -113,7 +123,7 @@
                     </div>
                     <input type="file" id="change-logo-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-yellow-100 file:text-amber-800 hover:file:bg-yellow-200 cursor-pointer">
                 </div>
-                <button onclick="updateCompanyLogo()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-black py-2.5 rounded-lg shadow transition mt-4">
+                <button onclick="updateCompanyLogo()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-black py-2.5 rounded-lg shadow transition mt-4 cursor-pointer">
                     <i class="fa-solid fa-circle-check"></i> <span data-lang-am="አዲስ ሎጎ አጽድቅ" data-lang-en="Approve New Logo">አዲስ ሎጎ አጽድቅ</span>
                 </button>
             </div>
@@ -147,16 +157,37 @@
                     </button>
                 </div>
             </div>
+
+            <!-- 3. የመጀመሪያ ገፅ Slider ምስል መጨመሪያ እና ማጥፊያ ሳጥን -->
+            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-sliders text-blue-600"></i> <span data-lang-am="የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ" data-lang-en="Manage Slider Images">የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ</span></h3>
+                    
+                    <div class="mb-3">
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="አዲስ ፎቶ ለመጨመር" data-lang-en="Upload New Slider Image">አዲስ ፎቶ ለመጨመር</label>
+                        <input type="file" id="slider-img-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-200 cursor-pointer">
+                        <button onclick="addSliderImage()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg shadow transition mt-2 text-xs cursor-pointer">
+                            <i class="fa-solid fa-plus"></i> <span data-lang-am="ወደ Slider ጨምር" data-lang-en="Add to Slider">ወደ Slider ጨምር</span>
+                        </button>
+                    </div>
+
+                    <hr class="my-3 border-gray-200">
+
+                    <!-- የቆዩትን Slider ፎቶዎች ማጥፊያ ዝርዝር -->
+                    <h4 class="text-xs font-bold text-gray-700 mb-2" data-lang-am="የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦" data-lang-en="Existing Slider Images (Delete):">የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦</h4>
+                    <div id="admin-slider-list" class="space-y-2 max-h-[150px] overflow-y-auto pr-1"></div>
+                </div>
+            </div>
             
-            <!-- 3. ምርቶች ማስተካከያ ሳጥን -->
-            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+            <!-- 4. ምርቶች ማስተካከያ ሳጥን -->
+            <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm lg:col-span-3 md:col-span-2">
                 <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-list-check text-blue-600"></i> <span data-lang-am="የነባር ምርቶች ዝርዝር" data-lang-en="Existing Products">የነባር ምርቶች ዝርዝር</span></h3>
                 <div id="admin-product-list" class="space-y-2.5 max-h-[350px] overflow-y-auto pr-2"></div>
             </div>
         </div>
     </div>
 
-    <!-- ORDER MODAL (የዘመነ የግብይት ገፅ ከእቃ ብዛት ማስገቢያ ጋር) -->
+    <!-- ORDER MODAL -->
     <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
         <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeOrderModal()"></div>
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
@@ -173,7 +204,6 @@
             <form id="order-form" onsubmit="submitOrder(event)">
                 <input type="hidden" id="order-item-name">
                 
-                <!-- አዲስ የተጨመረ: የእቃ ብዛት ማስገቢያ -->
                 <div class="mb-3">
                     <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የእቃ ብዛት (Quantity)" data-lang-en="Quantity">የእቃ ብዛት (Quantity)</label>
                     <input type="number" id="customer-quantity" min="1" value="1" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 font-bold">
@@ -220,7 +250,8 @@
         let currentLanguage = localStorage.getItem('viro_lang') || 'am';
         let companyLogo = localStorage.getItem('viro_logo') || "https://i.imgur.com/7xN6F29.png";
 
-        let sliderImages = [
+        // Slider ምስሎችን ከ Storage መጫን
+        let sliderImages = JSON.parse(localStorage.getItem('viro_sliders')) || [
             "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=1200",
             "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1200",
             "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200"
@@ -233,17 +264,23 @@
 
         let uploadedImageBase64 = "";
         let tempLogoBase64 = "";
+        let tempSliderBase64 = "";
         let selectedProductIndex = null;
 
         // BACKGROUND SLIDER FUNCTIONS
         function changeSlide() {
-            document.getElementById('slider-img').src = sliderImages[currentSlideIndex];
+            if(sliderImages.length > 0) {
+                if (currentSlideIndex >= sliderImages.length) currentSlideIndex = 0;
+                document.getElementById('slider-img').src = sliderImages[currentSlideIndex];
+            }
         }
         function nextSlide() {
+            if(sliderImages.length === 0) return;
             currentSlideIndex = (currentSlideIndex + 1) % sliderImages.length;
             changeSlide();
         }
         function prevSlide() {
+            if(sliderImages.length === 0) return;
             currentSlideIndex = (currentSlideIndex - 1 + sliderImages.length) % sliderImages.length;
             changeSlide();
         }
@@ -282,6 +319,15 @@
             }
         });
 
+        document.getElementById('slider-img-file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) { tempSliderBase64 = event.target.result; };
+                reader.readAsDataURL(file);
+            }
+        });
+
         document.getElementById('new-img-file').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (file) {
@@ -297,6 +343,45 @@
             localStorage.setItem('viro_logo', companyLogo);
             applyLogo();
             alert("✅ Logo Updated!");
+        }
+
+        // Slider ፎቶ ማኔጅመንት (መጨመር እና ማጥፋት)
+        function addSliderImage() {
+            if (!tempSliderBase64) return alert("⚠️ እባክዎ አስቀድመው ፎቶ ይምረጡ!");
+            sliderImages.push(tempSliderBase64);
+            localStorage.setItem('viro_sliders', JSON.stringify(sliderImages));
+            alert("✅ አዲስ Slider ፎቶ ተጨምሯል!");
+            document.getElementById('slider-img-file').value = "";
+            tempSliderBase64 = "";
+            renderSliderList();
+            changeSlide();
+        }
+
+        function deleteSliderImage(index) {
+            if (sliderImages.length <= 1) {
+                return alert("⚠️ ቢያንስ አንድ የ Slider ፎቶ መኖር አለበት!");
+            }
+            if (confirm("ይህንን Slider ፎቶ ማጥፋት ይፈልጋሉ?")) {
+                sliderImages.splice(index, 1);
+                localStorage.setItem('viro_sliders', JSON.stringify(sliderImages));
+                currentSlideIndex = 0;
+                renderSliderList();
+                changeSlide();
+            }
+        }
+
+        function renderSliderList() {
+            const listContainer = document.getElementById('admin-slider-list');
+            if(!listContainer) return;
+            listContainer.innerHTML = sliderImages.map((img, i) => `
+                <div class="flex items-center justify-between bg-gray-50 border p-1.5 rounded-lg">
+                    <img src="${img}" class="w-10 h-10 object-cover rounded">
+                    <span class="text-xs font-bold text-gray-500">ምስል #${i + 1}</span>
+                    <button onclick="deleteSliderImage(${i})" class="text-red-600 hover:text-red-800 p-1 font-bold text-xs cursor-pointer">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
         }
 
         function showSection(sectionId) {
@@ -358,6 +443,7 @@
             if(document.getElementById('admin-pass-input').value.trim() === '2116') {
                 document.getElementById('admin-login-box').classList.add('hidden');
                 showSection('admin'); 
+                renderSliderList();
             } else {
                 document.getElementById('login-error').classList.remove('hidden');
             }
@@ -373,13 +459,20 @@
 
             if(!name || !price || !payment) return alert("⚠️ Complete forms!");
 
+            const newImg = uploadedImageBase64 || "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500";
+
             products.push({
-                name: name, price: price, payment: payment, video: video,
-                img: uploadedImageBase64 || "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500"
+                name: name, price: price, payment: payment, video: video, img: newImg
             });
 
+            // አዲስ ምርት ሲጨመር ፎቶውን በራስ-ሰር ወደ የመጀመሪያው ገፅ Slider ጭምር ማካተት
+            sliderImages.push(newImg);
+            localStorage.setItem('viro_sliders', JSON.stringify(sliderImages));
+
             renderProducts();
+            renderSliderList();
             alert("✅ Added Successfully!");
+            
             // Reset fields
             document.getElementById('new-name').value = '';
             document.getElementById('new-price').value = '';
@@ -401,7 +494,6 @@
             document.getElementById('modal-payment-info').innerText = `💳 ${p.payment || 'Payment Required'}`;
             document.getElementById('order-item-name').value = p.name;
             
-            // ብዛት ማስገቢያውን ሁልጊዜ ወደ 1 መመለስ
             document.getElementById('customer-quantity').value = 1;
             
             const vLink = document.getElementById('modal-video-link');
@@ -422,7 +514,6 @@
             }
         }
 
-        // ፎቶዎችን እና ፅሁፍን በአንድ ላይ ወደ ቴሌግራም መላኪያ ፈንክሽን
         async function submitOrder(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submit-btn');
@@ -430,13 +521,12 @@
             submitBtn.innerText = "በመላክ ላይ... እባክዎ ይጠብቁ...";
 
             const pName = document.getElementById('order-item-name').value;
-            const cQty = document.getElementById('customer-quantity').value; // አዲስ፡ የብዛት መረጃ
+            const cQty = document.getElementById('customer-quantity').value;
             const cName = document.getElementById('customer-name').value;
             const cPhone = document.getElementById('customer-phone').value;
             const rLink = document.getElementById('customer-receipt-link').value || "የለም";
             const cLoc = document.getElementById('customer-location').value || "የለም";
 
-            // በፅሁፍ መልዕክቱ ውስጥ የብዛት መረጃን አካትተናል
             const message = `🛍️ **አዲስ የቪሮ ትዕዛዝ**\n\n` +
                             `📦 **እቃ:** ${pName}\n` +
                             `🔢 **ብዛት (Qty):** ${cQty}\n` +
@@ -446,14 +536,12 @@
                             `📍 **GPS:** ${cLoc}`;
 
             try {
-                // 1. መጀመሪያ ዋናውን የትዕዛዝ መረጃ በፅሁፍ እንልካለን
                 await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
                 });
 
-                // 2. የእቃውን ፎቶ ለመላክ (አድሚኑ የጫነው ፎቶ ካለ)
                 if (selectedProductIndex !== null && products[selectedProductIndex].img) {
                     const itemImg = products[selectedProductIndex].img;
                     if (itemImg.startsWith('data:image')) {
@@ -472,7 +560,6 @@
                     }
                 }
 
-                // 3. ደንበኛው የሰቀለውን የደረሰኝ ፎቶ መላክ
                 const receiptInput = document.getElementById('customer-receipt-file');
                 if (receiptInput.files.length > 0) {
                     const fData = new FormData();
@@ -482,7 +569,6 @@
                     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
                 }
 
-                // 4. ደንበኛው የሰቀለውን የፋይዳ (መታወቂያ) ፎቶ መላክ
                 const faydaInput = document.getElementById('customer-fayda-file');
                 if (faydaInput.files.length > 0) {
                     const fData = new FormData();
@@ -505,6 +591,7 @@
         }
 
         applyLogo();
+        changeSlide();
         updateLanguageDOM();
         showSection('landing');
     </script>
