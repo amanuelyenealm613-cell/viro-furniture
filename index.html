@@ -23,17 +23,19 @@
             </a>
             <div class="flex items-center gap-4">
                 <button onclick="showSection('landing')" class="hover:text-yellow-300 font-semibold cursor-pointer transition flex items-center gap-1">
-                    <i class="fa-solid fa-house"></i> <span data-lang-am="ቤት" data-lang-en="Home">ቤት</span>
+                    <i class="fa-solid fa-house"></i> <span data-lang-am="ቤት" data-lang-en="Home" data-lang-zh="首页">ቤት</span>
                 </button>
-                <button onclick="showSection('shop')" class="hover:text-yellow-300 font-semibold cursor-pointer transition">ምርቶች</button>
+                <button onclick="showSection('shop')" class="hover:text-yellow-300 font-semibold cursor-pointer transition">
+                    <span data-lang-am="ምርቶች" data-lang-en="Products" data-lang-zh="产品">ምርቶች</span>
+                </button>
                 
-                <!-- Language Switcher -->
-                <button onclick="toggleLanguage()" class="bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded text-xs font-bold border border-green-500 cursor-pointer">
+                <!-- Multi-Language Switcher (AM / EN / ZH) -->
+                <button onclick="toggleLanguage()" class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded text-xs font-bold border border-green-500 cursor-pointer flex items-center gap-1">
                     <i class="fa-solid fa-globe"></i> <span id="lang-btn-text">EN</span>
                 </button>
 
                 <button onclick="toggleAdminLogin()" class="bg-green-900 hover:bg-green-950 text-yellow-400 px-3 py-1.5 rounded-md text-sm font-bold transition cursor-pointer border border-green-600 shadow-sm">
-                    <i class="fa-solid fa-lock"></i> <span data-lang-am="አድሚን" data-lang-en="Admin">አድሚን</span>
+                    <i class="fa-solid fa-lock"></i> <span data-lang-am="አድሚን" data-lang-en="Admin" data-lang-zh="管理员">አድሚን</span>
                 </button>
             </div>
         </div>
@@ -45,12 +47,12 @@
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <i class="fa-solid fa-shield-halved text-green-700 text-xl"></i>
             </div>
-            <h3 class="text-sm font-bold text-gray-700 mb-2" data-lang-am="የአድሚን የይለፍ ቃል ያስገቡ" data-lang-en="Enter Admin Password">የአድሚን የይለፍ ቃል ያስገቡ</h3>
+            <h3 class="text-sm font-bold text-gray-700 mb-2" data-lang-am="የአድሚን የይለፍ ቃል ያስገቡ" data-lang-en="Enter Admin Password" data-lang-zh="请输入管理员密码">የአድሚን የይለፍ ቃል ያስገቡ</h3>
             <div class="flex gap-2">
                 <input type="password" id="admin-pass-input" placeholder="****" class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-green-600 text-center font-bold text-lg">
-                <button onclick="verifyAdminLogin()" class="bg-green-700 text-white px-5 rounded-lg font-bold hover:bg-green-800 cursor-pointer transition" data-lang-am="ግባ" data-lang-en="Login">ግባ</button>
+                <button onclick="verifyAdminLogin()" class="bg-green-700 text-white px-5 rounded-lg font-bold hover:bg-green-800 cursor-pointer transition" data-lang-am="ግባ" data-lang-en="Login" data-lang-zh="登录">ግባ</button>
             </div>
-            <p id="login-error" class="text-red-500 text-xs mt-2 hidden font-semibold" data-lang-am="⚠️ የተሳሳተ የይለፍ ቃል ነው!" data-lang-en="⚠️ Incorrect Password!">⚠️ የተሳሳተ የይለፍ ቃል ነው!</p>
+            <p id="login-error" class="text-red-500 text-xs mt-2 hidden font-semibold" data-lang-am="⚠️ የተሳሳተ የይለፍ ቃል ነው!" data-lang-en="⚠️ Incorrect Password!" data-lang-zh="⚠️ 密码错误！">⚠️ የተሳሳተ የይለፍ ቃል ነው!</p>
         </div>
     </div>
 
@@ -71,17 +73,17 @@
                     <img id="hero-logo" src="https://i.imgur.com/7xN6F29.png" alt="Viro Big Logo" class="h-28 w-28 md:h-32 md:w-32 rounded-full border-4 border-yellow-400 shadow-2xl mx-auto bg-white p-1 object-cover">
                 </div>
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight drop-shadow-lg">Viro Garden Furniture</h1>
-                <p class="text-lg md:text-xl mb-6 text-green-100 font-light drop-shadow" data-lang-am="Made in Ethiopia - ጥራት ያላቸው የቤትና የጓሮ ፈርኒቸሮች አምራች!" data-lang-en="Made in Ethiopia - Manufacturer of Quality Home & Garden Furniture!">Made in Ethiopia - ጥራት ያላቸው የቤትና የጓሮ ፈርኒቸሮች አምራች!</p>
+                <p class="text-lg md:text-xl mb-6 text-green-100 font-light drop-shadow" data-lang-am="Made in Ethiopia - ጥራት ያላቸው የቤትና የጓሮ ፈርኒቸሮች አምራች!" data-lang-en="Made in Ethiopia - Manufacturer of Quality Home & Garden Furniture!" data-lang-zh="埃塞俄比亚制造 - 优质家居与花园家具制造商！">Made in Ethiopia - ጥራት ያላቸው የቤትና የጓሮ ፈርኒቸሮች አምራች!</p>
                 <button onclick="showSection('shop')" class="bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-950 font-black px-8 py-3.5 rounded-full text-base shadow-xl hover:from-yellow-400 hover:to-amber-400 cursor-pointer transition transform hover:scale-105 flex items-center gap-2">
-                    <i class="fa-solid fa-bag-shopping"></i> <span data-lang-am="ምርቶችን ለመግዛት እዚህ ይጫኑ" data-lang-en="Click here to shop products">ምርቶችን ለመግዛት እዚህ ይጫኑ</span>
+                    <i class="fa-solid fa-bag-shopping"></i> <span data-lang-am="ምርቶችን ለመግዛት እዚህ ይጫኑ" data-lang-en="Click here to shop products" data-lang-zh="点击此处购买产品">ምርቶችን ለመግዛት እዚህ ይጫኑ</span>
                 </button>
             </div>
         </div>
         
         <div class="container mx-auto px-4 py-12">
             <div class="max-w-3xl mx-auto text-center bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                <h2 class="text-2xl font-extrabold text-green-800 mb-3 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> <span data-lang-am="ስለ ድርጅታችን" data-lang-en="About Our Company">ስለ ድርጅታችን</span></h2>
-                <p class="text-gray-600 leading-relaxed text-base" data-lang-am="ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።" data-lang-en="Viro Garden Furniture produces high-quality balcony, living room, and office furniture known for durability and modern design in Ethiopia, offering them at competitive prices.">ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።</p>
+                <h2 class="text-2xl font-extrabold text-green-800 mb-3 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> <span data-lang-am="ስለ ድርጅታችን" data-lang-en="About Our Company" data-lang-zh="关于我们公司">ስለ ድርጅታችን</span></h2>
+                <p class="text-gray-600 leading-relaxed text-base" data-lang-am="ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።" data-lang-en="Viro Garden Furniture produces high-quality balcony, living room, and office furniture known for durability and modern design in Ethiopia, offering them at competitive prices." data-lang-zh="Viro Garden Furniture 在埃塞俄比亚生产高品质的阳台、客厅和办公家具，以耐用和现代设计闻名，并以实惠的价格提供。">ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።</p>
             </div>
         </div>
     </div>
@@ -89,15 +91,15 @@
     <!-- SECTION 2: SHOP (የግብይት ገፅ) -->
     <div id="shop-section" class="section hidden container mx-auto px-4 py-8">
         
-        <!-- ወደ መጀመሪያ ገፅ የመመለሻ ቁልፍ (ከላይ በስተግራ በኩል የተጨመረ) -->
+        <!-- ወደ መጀመሪያ ገፅ የመመለሻ ቁልፍ -->
         <div class="flex justify-between items-center mb-6">
             <button onclick="showSection('landing')" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-2 text-sm">
-                <i class="fa-solid fa-arrow-left"></i> <span data-lang-am="ወደ መጀመሪያ ገጽ ተመለስ" data-lang-en="Back to Home Page">ወደ መጀመሪያ ገጽ ተመለስ</span>
+                <i class="fa-solid fa-arrow-left"></i> <span data-lang-am="ወደ መጀመሪያ ገጽ ተመለስ" data-lang-en="Back to Home Page" data-lang-zh="返回首页">ወደ መጀመሪያ ገጽ ተመለስ</span>
             </button>
         </div>
 
-        <h2 class="text-3xl font-bold text-center text-green-800 mb-2 font-serif" data-lang-am="የቪሮ ምርቶች ዝርዝር" data-lang-en="Viro Products List">የቪሮ ምርቶች ዝርዝር</h2>
-        <p class="text-center text-gray-500 mb-10" data-lang-am="የሚፈልጉትን መርጠው ማዘዝ ይችላሉ" data-lang-en="Select and order what you want">የሚፈልጉትን መርጠው ማዘዝ ይችላሉ</p>
+        <h2 class="text-3xl font-bold text-center text-green-800 mb-2 font-serif" data-lang-am="የቪሮ ምርቶች ዝርዝር" data-lang-en="Viro Products List" data-lang-zh="Viro 产品列表">የቪሮ ምርቶች ዝርዝር</h2>
+        <p class="text-center text-gray-500 mb-10" data-lang-am="የሚፈልጉትን መርጠው ማዘዝ ይችላሉ" data-lang-en="Select and order what you want" data-lang-zh="选择并订购您想要的产品">የሚፈልጉትን መርጠው ማዘዝ ይችላሉ</p>
         <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"></div>
     </div>
 
@@ -105,11 +107,11 @@
     <div id="admin-panel-section" class="section hidden container mx-auto px-4 py-8">
         <div class="bg-gradient-to-r from-green-900 to-green-800 text-white p-6 rounded-t-2xl shadow flex justify-between items-center border-b-4 border-yellow-500">
             <div>
-                <h2 class="text-2xl font-black tracking-wide flex items-center gap-2"><i class="fa-solid fa-gauge-high text-yellow-400"></i> <span data-lang-am="ቪሮ ማስተዳደሪያ ዳሽቦርድ" data-lang-en="Viro Admin Dashboard">ቪሮ ማስተዳደሪያ ዳሽቦርድ</span></h2>
-                <p class="text-xs text-green-200 mt-0.5" data-lang-am="የእቃ ዝርዝር፣ ዋጋ፣ ቪዲዮ እና የኩባንያውን ሎጎ መቀየሪያ ፓነል" data-lang-en="Product list, price, video links, and company logo configuration panel">የእቃ ዝርዝር፣ ዋጋ፣ ቪዲዮ እና የኩባንያውን ሎጎ መቀየሪያ ፓነል</p>
+                <h2 class="text-2xl font-black tracking-wide flex items-center gap-2"><i class="fa-solid fa-gauge-high text-yellow-400"></i> <span data-lang-am="ቪሮ ማስተዳደሪያ ዳሽቦርድ" data-lang-en="Viro Admin Dashboard" data-lang-zh="Viro 管理仪表板">ቪሮ ማስተዳደሪያ ዳሽቦርድ</span></h2>
+                <p class="text-xs text-green-200 mt-0.5" data-lang-am="የእቃ ዝርዝር፣ ዋጋ፣ ቪዲዮ እና የኩባንያውን ሎጎ መቀየሪያ ፓነል" data-lang-en="Product list, price, video links, and company logo configuration panel" data-lang-zh="产品列表、价格、视频链接和公司Logo设置面板">የእቃ ዝርዝር፣ ዋጋ፣ ቪዲዮ እና የኩባንያውን ሎጎ መቀየሪያ ፓነል</p>
             </div>
             <button onclick="hideAdmin()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-1 text-sm">
-                <i class="fa-solid fa-circle-xmark"></i> <span data-lang-am="ዳሽቦርድ ዝጋ" data-lang-en="Close Dashboard">ዳሽቦርድ ዝጋ</span>
+                <i class="fa-solid fa-circle-xmark"></i> <span data-lang-am="ዳሽቦርድ ዝጋ" data-lang-en="Close Dashboard" data-lang-zh="关闭仪表板">ዳሽቦርድ ዝጋ</span>
             </button>
         </div>
 
@@ -117,43 +119,43 @@
             <!-- 1. የሎጎ መቀየሪያ ሳጥን -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
                 <div>
-                    <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-image text-yellow-500"></i> <span data-lang-am="የድርጅቱን ሎጎ ይቀይሩ" data-lang-en="Change Company Logo">የድርጅቱን ሎጎ ይቀይሩ</span></h3>
+                    <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-image text-yellow-500"></i> <span data-lang-am="የድርጅቱን ሎጎ ይቀይሩ" data-lang-en="Change Company Logo" data-lang-zh="更换公司 Logo">የድርጅቱን ሎጎ ይቀይሩ</span></h3>
                     <div class="mb-4 text-center bg-gray-50 p-3 rounded-lg border border-dashed border-gray-300">
                         <img id="admin-logo-preview" src="https://i.imgur.com/7xN6F29.png" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-yellow-400 shadow bg-white">
                     </div>
                     <input type="file" id="change-logo-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-yellow-100 file:text-amber-800 hover:file:bg-yellow-200 cursor-pointer">
                 </div>
                 <button onclick="updateCompanyLogo()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-black py-2.5 rounded-lg shadow transition mt-4 cursor-pointer">
-                    <i class="fa-solid fa-circle-check"></i> <span data-lang-am="አዲስ ሎጎ አጽድቅ" data-lang-en="Approve New Logo">አዲስ ሎጎ አጽድቅ</span>
+                    <i class="fa-solid fa-circle-check"></i> <span data-lang-am="አዲስ ሎጎ አጽድቅ" data-lang-en="Approve New Logo" data-lang-zh="确认新 Logo">አዲስ ሎጎ አጽድቅ</span>
                 </button>
             </div>
 
             <!-- 2. አዲስ ምርት መጫኛ ሳጥን -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
-                <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-circle-plus text-green-600"></i> <span data-lang-am="አዲስ ምርት መጫኛ" data-lang-en="Add New Product">አዲስ ምርት መጫኛ</span></h3>
+                <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-circle-plus text-green-600"></i> <span data-lang-am="አዲስ ምርት መጫኛ" data-lang-en="Add New Product" data-lang-zh="添加新产品">አዲስ ምርት መጫኛ</span></h3>
                 <div class="space-y-3">
                     <div>
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የምርት ስም" data-lang-en="Product Name">የምርት ስም</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የምርት ስም" data-lang-en="Product Name" data-lang-zh="产品名称">የምርት ስም</label>
                         <input id="new-name" placeholder="የበረንዳ ሶፋ" class="w-full border border-gray-300 p-2.5 rounded-lg text-sm focus:outline-green-600">
                     </div>
                     <div>
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="ዋጋ (ብር)" data-lang-en="Price (ETB)">ዋጋ (ብር)</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="ዋጋ (ብር)" data-lang-en="Price (ETB)" data-lang-zh="价格 (ETB)">ዋጋ (ብር)</label>
                         <input id="new-price" type="number" placeholder="45000" class="w-full border border-gray-300 p-2.5 rounded-lg text-sm focus:outline-green-600">
                     </div>
                     <div>
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የባንክ / ቴሌብር መረጃ" data-lang-en="Bank / Telebirr Info">የባንክ / ቴሌብር መረጃ</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የባንክ / ቴሌብር መረጃ" data-lang-en="Bank / Telebirr Info" data-lang-zh="银行 / Telebirr 信息">የባንክ / ቴሌብር መረጃ</label>
                         <input id="new-payment" placeholder="CBE: 1000..." class="w-full border border-gray-300 p-2.5 rounded-lg text-sm focus:outline-green-600">
                     </div>
                     <div>
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የቪዲዮ ሊንክ (YouTube/TikTok)" data-lang-en="Video Link (YouTube/TikTok)">የቪዲዮ ሊንክ (YouTube/TikTok)</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የቪዲዮ ሊንክ (YouTube/TikTok)" data-lang-en="Video Link (YouTube/TikTok)" data-lang-zh="视频链接 (YouTube/TikTok)">የቪዲዮ ሊንክ (YouTube/TikTok)</label>
                         <input id="new-video" placeholder="https://..." class="w-full border border-gray-300 p-2.5 rounded-lg text-sm focus:outline-green-600">
                     </div>
                     <div>
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የምርት ፎቶ" data-lang-en="Product Photo">የምርት ፎቶ</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="የምርት ፎቶ" data-lang-en="Product Photo" data-lang-zh="产品图片">የምርት ፎቶ</label>
                         <input type="file" id="new-img-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-green-100 file:text-green-800 cursor-pointer">
                     </div>
                     <button onclick="addProduct()" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 rounded-lg shadow cursor-pointer transition mt-2 flex items-center justify-center gap-1">
-                        <i class="fa-solid fa-plus"></i> <span data-lang-am="ምርቱን ጨምር" data-lang-en="Add Product">ምርቱን ጨምር</span>
+                        <i class="fa-solid fa-plus"></i> <span data-lang-am="ምርቱን ጨምር" data-lang-en="Add Product" data-lang-zh="添加产品">ምርቱን ጨምር</span>
                     </button>
                 </div>
             </div>
@@ -161,27 +163,27 @@
             <!-- 3. የመጀመሪያ ገፅ Slider ምስል መጨመሪያ እና ማጥፊያ ሳጥን -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
                 <div>
-                    <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-sliders text-blue-600"></i> <span data-lang-am="የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ" data-lang-en="Manage Slider Images">የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ</span></h3>
+                    <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-sliders text-blue-600"></i> <span data-lang-am="የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ" data-lang-en="Manage Slider Images" data-lang-zh="管理轮播图片">የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ</span></h3>
                     
                     <div class="mb-3">
-                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="አዲስ ፎቶ ለመጨመር" data-lang-en="Upload New Slider Image">አዲስ ፎቶ ለመጨመር</label>
+                        <label class="block text-xs text-gray-600 font-bold mb-1" data-lang-am="አዲስ ፎቶ ለመጨመር" data-lang-en="Upload New Slider Image" data-lang-zh="上传新轮播图片">አዲስ ፎቶ ለመጨመር</label>
                         <input type="file" id="slider-img-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-blue-100 file:text-blue-800 hover:file:bg-blue-200 cursor-pointer">
                         <button onclick="addSliderImage()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg shadow transition mt-2 text-xs cursor-pointer">
-                            <i class="fa-solid fa-plus"></i> <span data-lang-am="ወደ Slider ጨምር" data-lang-en="Add to Slider">ወደ Slider ጨምር</span>
+                            <i class="fa-solid fa-plus"></i> <span data-lang-am="ወደ Slider ጨምር" data-lang-en="Add to Slider" data-lang-zh="添加到轮播">ወደ Slider ጨምር</span>
                         </button>
                     </div>
 
                     <hr class="my-3 border-gray-200">
 
                     <!-- የቆዩትን Slider ፎቶዎች ማጥፊያ ዝርዝር -->
-                    <h4 class="text-xs font-bold text-gray-700 mb-2" data-lang-am="የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦" data-lang-en="Existing Slider Images (Delete):">የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦</h4>
+                    <h4 class="text-xs font-bold text-gray-700 mb-2" data-lang-am="የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦" data-lang-en="Existing Slider Images (Delete):" data-lang-zh="现有的轮播图片（删除）：">የነበሩ የ Slider ፎቶዎች (ማጥፊያ)፦</h4>
                     <div id="admin-slider-list" class="space-y-2 max-h-[150px] overflow-y-auto pr-1"></div>
                 </div>
             </div>
             
             <!-- 4. ምርቶች ማስተካከያ ሳጥን -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm lg:col-span-3 md:col-span-2">
-                <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-list-check text-blue-600"></i> <span data-lang-am="የነባር ምርቶች ዝርዝር" data-lang-en="Existing Products">የነባር ምርቶች ዝርዝር</span></h3>
+                <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-list-check text-blue-600"></i> <span data-lang-am="የነባር ምርቶች ዝርዝር" data-lang-en="Existing Products" data-lang-zh="现有的产品列表">የነባር ምርቶች ዝርዝር</span></h3>
                 <div id="admin-product-list" class="space-y-2.5 max-h-[350px] overflow-y-auto pr-2"></div>
             </div>
         </div>
@@ -205,38 +207,38 @@
                 <input type="hidden" id="order-item-name">
                 
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የእቃ ብዛት (Quantity)" data-lang-en="Quantity">የእቃ ብዛት (Quantity)</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የእቃ ብዛት (Quantity)" data-lang-en="Quantity" data-lang-zh="数量">የእቃ ብዛት (Quantity)</label>
                     <input type="number" id="customer-quantity" min="1" value="1" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 font-bold">
                 </div>
 
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="ሙሉ ስም" data-lang-en="Full Name">ሙሉ ስም</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="ሙሉ ስም" data-lang-en="Full Name" data-lang-zh="全名">ሙሉ ስም</label>
                     <input type="text" id="customer-name" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="ስልክ ቁጥር" data-lang-en="Phone Number">ስልክ ቁጥር</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="ስልክ ቁጥር" data-lang-en="Phone Number" data-lang-zh="电话号码">ስልክ ቁጥር</label>
                     <input type="tel" id="customer-phone" required class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የደረሰኝ ሊንክ (ከሌለ ይለፉት)" data-lang-en="Receipt Link (Optional)">የደረሰኝ ሊንክ (ከሌለ ይለፉት)</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የደረሰኝ ሊንክ (ከሌለ ይለፉት)" data-lang-en="Receipt Link (Optional)" data-lang-zh="收据链接（可选）">የደረሰኝ ሊንክ (ከሌለ ይለፉት)</label>
                     <input type="url" id="customer-receipt-link" placeholder="https://..." class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 text-sm">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የከፈሉበት የደረሰኝ ፎቶ" data-lang-en="Upload Receipt Photo">የከፈሉበት የደረሰኝ ፎቶ</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የከፈሉበት የደረሰኝ ፎቶ" data-lang-en="Upload Receipt Photo" data-lang-zh="上传付款收据照片">የከፈሉበት የደረሰኝ ፎቶ</label>
                     <input type="file" id="customer-receipt-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
                 </div>
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የፋይዳ (መታወቂያ) ፎቶ ያስገቡ" data-lang-en="Upload Fayda (ID) Photo">የፋይዳ (መታወቂያ) ፎቶ ያስገቡ</label>
+                    <label class="block text-sm text-gray-600 font-semibold mb-1" data-lang-am="የፋይዳ (መታወቂያ) ፎቶ ያስገቡ" data-lang-en="Upload Fayda (ID) Photo" data-lang-zh="上传身份证 (Fayda) 照片">የፋይዳ (መታወቂያ) ፎቶ ያስገቡ</label>
                     <input type="file" id="customer-fayda-file" accept="image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
                 </div>
                 <div class="mb-4">
                     <button type="button" onclick="getLocation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-lg font-bold shadow transition flex items-center justify-center gap-2 cursor-pointer text-sm">
-                        <span id="location-status"><i class="fa-solid fa-location-crosshairs"></i> <span data-lang-am="ትክክለኛ መገኛ ቦታ (📍 GPS)" data-lang-en="Exact Location (📍 GPS)">ትክክለኛ መገኛ ቦታ (📍 GPS)</span></span>
+                        <span id="location-status"><i class="fa-solid fa-location-crosshairs"></i> <span data-lang-am="ትክክለኛ መገኛ ቦታ (📍 GPS)" data-lang-en="Exact Location (📍 GPS)" data-lang-zh="准确位置 (📍 GPS)">ትክክለኛ መገኛ ቦታ (📍 GPS)</span></span>
                     </button>
                 </div>
                 <input type="hidden" id="customer-location">
                 <button type="submit" id="submit-btn" class="w-full bg-green-700 hover:bg-green-800 text-white p-3 rounded-lg font-bold shadow-lg transition text-center cursor-pointer block">
-                    <i class="fa-solid fa-paper-plane mr-1"></i> <span data-lang-am="ትዕዛዝ እና የክፍያ መረጃ ላክ" data-lang-en="Send Order & Payment Info">ትዕዛዝ እና የክፍያ መረጃ ላክ</span>
+                    <i class="fa-solid fa-paper-plane mr-1"></i> <span data-lang-am="ትዕዛዝ እና የክፍያ መረጃ ላክ" data-lang-en="Send Order & Payment Info" data-lang-zh="发送订单与付款信息">ትዕዛዝ እና የክፍያ መረጃ ላክ</span>
                 </button>
             </form>
         </div>
@@ -247,6 +249,7 @@
         const BOT_TOKEN = '8762925667:AAHOMw311XdcubZWs-dBI1Xz7uS7QgKOVK8';
         const CHAT_ID = '7303942788'; 
 
+        // ቋንቋዎች፦ 'am' (አማርኛ), 'en' (English), 'zh' (中文)
         let currentLanguage = localStorage.getItem('viro_lang') || 'am';
         let companyLogo = localStorage.getItem('viro_logo') || "https://i.imgur.com/7xN6F29.png";
 
@@ -286,15 +289,30 @@
         }
         setInterval(nextSlide, 4000);
 
-        // LANGUAGE SYSTEM
+        // MULTI-LANGUAGE SYSTEM (AM -> EN -> ZH)
         function updateLanguageDOM() {
             document.querySelectorAll('[data-lang-am]').forEach(el => {
-                el.innerText = currentLanguage === 'am' ? el.getAttribute('data-lang-am') : el.getAttribute('data-lang-en');
+                if (currentLanguage === 'am') {
+                    el.innerText = el.getAttribute('data-lang-am');
+                } else if (currentLanguage === 'en') {
+                    el.innerText = el.getAttribute('data-lang-en');
+                } else if (currentLanguage === 'zh') {
+                    el.innerText = el.getAttribute('data-lang-zh') || el.getAttribute('data-lang-en');
+                }
             });
-            document.getElementById('lang-btn-text').innerText = currentLanguage === 'am' ? 'EN' : 'አማ';
+            
+            // የቁልፍ ጽሁፉ የሚቀጥለውን ቋንቋ ያሳያል
+            const langBtn = document.getElementById('lang-btn-text');
+            if (currentLanguage === 'am') langBtn.innerText = 'EN';
+            else if (currentLanguage === 'en') langBtn.innerText = '中文';
+            else if (currentLanguage === 'zh') langBtn.innerText = 'አማ';
         }
+
         function toggleLanguage() {
-            currentLanguage = currentLanguage === 'am' ? 'en' : 'am';
+            if (currentLanguage === 'am') currentLanguage = 'en';
+            else if (currentLanguage === 'en') currentLanguage = 'zh';
+            else currentLanguage = 'am';
+
             localStorage.setItem('viro_lang', currentLanguage);
             updateLanguageDOM();
             renderProducts();
@@ -345,7 +363,7 @@
             alert("✅ Logo Updated!");
         }
 
-        // Slider ፎቶ ማኔጅመንት (መጨመር እና ማጥፋት)
+        // Slider ፎቶ ማኔጅመንት
         function addSliderImage() {
             if (!tempSliderBase64) return alert("⚠️ እባክዎ አስቀድመው ፎቶ ይምረጡ!");
             sliderImages.push(tempSliderBase64);
@@ -400,7 +418,10 @@
             container.innerHTML = '';
             
             products.forEach((p, index) => {
-                const btnText = currentLanguage === 'am' ? 'አሁን እዘዝ' : 'Order Now';
+                let btnText = 'አሁን እዘዝ';
+                if (currentLanguage === 'en') btnText = 'Order Now';
+                else if (currentLanguage === 'zh') btnText = '立即订购';
+
                 container.innerHTML += `
                     <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden hover:shadow-xl transition duration-300 flex flex-col justify-between p-4">
                         <div>
@@ -465,7 +486,6 @@
                 name: name, price: price, payment: payment, video: video, img: newImg
             });
 
-            // አዲስ ምርት ሲጨመር ፎቶውን በራስ-ሰር ወደ የመጀመሪያው ገፅ Slider ጭምር ማካተት
             sliderImages.push(newImg);
             localStorage.setItem('viro_sliders', JSON.stringify(sliderImages));
 
@@ -473,7 +493,6 @@
             renderSliderList();
             alert("✅ Added Successfully!");
             
-            // Reset fields
             document.getElementById('new-name').value = '';
             document.getElementById('new-price').value = '';
             document.getElementById('new-payment').value = '';
