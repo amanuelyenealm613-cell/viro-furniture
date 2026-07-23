@@ -29,16 +29,11 @@
                     <span data-lang-am="ምርቶች" data-lang-en="Products" data-lang-zh="产品">ምርቶች</span>
                 </button>
 
-                <!-- Store Button -->
-                <button onclick="toggleStoreLogin()" class="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1.5 rounded-md text-xs font-bold transition cursor-pointer border border-amber-500 shadow-sm flex items-center gap-1">
+                <!-- Store Button Only -->
+                <button onclick="toggleStoreLogin()" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-md text-xs font-bold transition cursor-pointer border border-amber-500 shadow-sm flex items-center gap-1">
                     <i class="fa-solid fa-warehouse"></i> <span>እስቶር</span>
                 </button>
 
-                <!-- Store Admission Button -->
-                <button onclick="toggleAdmissionLogin()" class="bg-orange-600 hover:bg-orange-700 text-white px-2.5 py-1.5 rounded-md text-xs font-bold transition cursor-pointer border border-orange-500 shadow-sm flex items-center gap-1">
-                    <i class="fa-solid fa-boxes-packing"></i> <span>አድሚሽን</span>
-                </button>
-                
                 <!-- Multi-Language Switcher -->
                 <button onclick="toggleLanguage()" class="bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded text-xs font-bold border border-green-500 cursor-pointer flex items-center gap-1">
                     <i class="fa-solid fa-globe"></i> <span id="lang-btn-text">EN</span>
@@ -57,16 +52,16 @@
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <i class="fa-solid fa-shield-halved text-green-700 text-xl"></i>
             </div>
-            <h3 class="text-sm font-bold text-gray-700 mb-2">የአድሚን የይለፍ ቃል ያስገቡ</h3>
+            <h3 class="text-sm font-bold text-gray-700 mb-2">የይለፍ ቃል ያስገቡ</h3>
             <div class="flex gap-2">
-                <input type="password" id="admin-pass-input" placeholder="****" class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-green-600 text-center font-bold text-lg">
+                <input type="password" id="admin-pass-input" placeholder="የይለፍ ቃል" class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-green-600 text-center font-bold text-lg">
                 <button onclick="verifyAdminLogin()" class="bg-green-700 text-white px-5 rounded-lg font-bold hover:bg-green-800 cursor-pointer transition">ግባ</button>
             </div>
             <p id="login-error" class="text-red-500 text-xs mt-2 hidden font-semibold">⚠️ የተሳሳተ የይለፍ ቃል ነው!</p>
         </div>
     </div>
 
-    <!-- IN-PAGE STORE LOGIN BOX (Password: 1213) -->
+    <!-- IN-PAGE STORE LOGIN BOX -->
     <div id="store-login-box" class="hidden container mx-auto px-4 mt-4 max-w-sm">
         <div class="bg-white p-5 rounded-xl shadow-lg border border-amber-200 text-center">
             <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -74,14 +69,14 @@
             </div>
             <h3 class="text-sm font-bold text-gray-700 mb-2">የእስቶር የይለፍ ቃል ያስገቡ</h3>
             <div class="flex gap-2 mb-2">
-                <input type="password" id="store-pass-input" placeholder="1213" class="border border-gray-300 p-2.5 rounded-lg w-full text-center font-bold text-lg">
+                <input type="password" id="store-pass-input" placeholder="የይለፍ ቃል" class="border border-gray-300 p-2.5 rounded-lg w-full text-center font-bold text-lg">
                 <button onclick="verifyStoreLogin()" class="bg-amber-600 text-white px-5 rounded-lg font-bold hover:bg-amber-700 cursor-pointer transition">ግባ</button>
             </div>
             <p id="store-login-error" class="text-red-500 text-xs mt-2 hidden font-semibold">⚠️ የተሳሳተ የይለፍ ቃል!</p>
         </div>
     </div>
 
-    <!-- IN-PAGE STORE ADMISSION LOGIN BOX (Card ID: 1030 & Pass: 1030) -->
+    <!-- IN-PAGE STORE ADMISSION LOGIN BOX -->
     <div id="admission-login-box" class="hidden container mx-auto px-4 mt-4 max-w-sm">
         <div class="bg-white p-5 rounded-xl shadow-lg border border-orange-200 text-center">
             <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -89,11 +84,11 @@
             </div>
             <h3 class="text-sm font-bold text-gray-700 mb-2">የእስቶር አድሚሽን መግቢያ</h3>
             <div class="space-y-2 mb-3">
-                <input type="text" id="admission-card-id-input" placeholder="ካርድ አይዲ (1030)" class="border border-gray-300 p-2 rounded-lg w-full text-center text-sm">
-                <input type="password" id="admission-pass-input" placeholder="የይለፍ ቃል (1030)" class="border border-gray-300 p-2 rounded-lg w-full text-center text-sm font-bold">
+                <input type="text" id="admission-card-id-input" placeholder="መታወቂያ (Card ID)" class="border border-gray-300 p-2 rounded-lg w-full text-center text-sm">
+                <input type="password" id="admission-pass-input" placeholder="የይለፍ ቃል" class="border border-gray-300 p-2 rounded-lg w-full text-center text-sm font-bold">
             </div>
             <button onclick="verifyAdmissionLogin()" class="w-full bg-orange-600 text-white py-2 rounded-lg font-bold hover:bg-orange-700 cursor-pointer transition">ወደ አድሚሽን ግባ</button>
-            <p id="admission-login-error" class="text-red-500 text-xs mt-2 hidden font-semibold">⚠️ የተሳሳተ ካርድ ቁጥር ወይም የይለፍ ቃል!</p>
+            <p id="admission-login-error" class="text-red-500 text-xs mt-2 hidden font-semibold">⚠️ የተሳሳተ መታወቂያ ቁጥር ወይም የይለፍ ቃል!</p>
         </div>
     </div>
 
@@ -122,7 +117,7 @@
         <div class="container mx-auto px-4 py-12">
             <div class="max-w-3xl mx-auto text-center bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                 <h2 class="text-2xl font-extrabold text-green-800 mb-3 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> <span data-lang-am="ስለ ድርጅታችን" data-lang-en="About Our Company" data-lang-zh="关于我们公司">ስለ ድርጅታችን</span></h2>
-                <p class="text-gray-600 leading-relaxed text-base" data-lang-am="ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።" data-lang-en="Viro Garden Furniture produces high-quality balcony, living room, and office furniture known for durability and modern design in Ethiopia, offering them at competitive prices." data-lang-zh="Viro Garden Furniture 在埃塞俄比亚生产高品质的阳台、客厅和办公家具，以耐用和现代设计闻名，并以实惠的价格提供。">ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።</p>
+                <p class="text-gray-600 leading-relaxed text-base" data-lang-am="ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።" data-lang-en="Viro Garden Furniture produces high-quality balcony, living room, and office furniture known for durability and modern design in Ethiopia, offering them at competitive prices." data-lang-zh="Viro Garden Furniture 在埃塞欧比亚生产高品质的阳台、客厅和办公家具，以耐用和现代设计闻名，并以实惠的价格提供。">ቪሮ ጋርደን ፈርኒቸር በኢትዮጵያ ውስጥ በጥራት፣ በጉልበትና በዘመናዊ ዲዛይን የታወቁ የበረንዳ፣ የሳሎንና የቢሮ እቃዎችን በጥራት አምርቶ በተመጣጣኝ ዋጋ ያቀርባል።</p>
             </div>
         </div>
     </div>
@@ -152,7 +147,6 @@
             </button>
         </div>
 
-        <!-- የተላኩ የደንበኞች ትዕዛዞች ማረጋገጫ -->
         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm mt-6 mb-6">
             <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-2 border-b pb-2">
                 <i class="fa-solid fa-clipboard-list text-yellow-600"></i> የደንበኞች ትዕዛዞች መቆጣጠሪያ
@@ -161,7 +155,6 @@
         </div>
 
         <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
-            <!-- የሎጎ መቀየሪያ -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
                 <div>
                     <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-image text-yellow-500"></i> <span>የድርጅቱን ሎጎ ይቀይሩ</span></h3>
@@ -175,7 +168,6 @@
                 </button>
             </div>
 
-            <!-- አዲስ ምርት መጫኛ -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
                 <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-circle-plus text-green-600"></i> <span>አዲስ ምርት መጫኛ</span></h3>
                 <div class="space-y-3">
@@ -205,7 +197,6 @@
                 </div>
             </div>
 
-            <!-- Slider ማስተካከያ -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-between">
                 <div>
                     <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-sliders text-blue-600"></i> <span>የመጀመሪያ ገፅ Slider ፎቶ ማስተካከያ</span></h3>
@@ -222,7 +213,6 @@
                 </div>
             </div>
             
-            <!-- ምርቶች ማስተካከያ -->
             <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm lg:col-span-3 md:col-span-2">
                 <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-1 border-b pb-2"><i class="fa-solid fa-list-check text-blue-600"></i> <span>የነባር ምርቶች ዝርዝር</span></h3>
                 <div id="admin-product-list" class="space-y-2.5 max-h-[350px] overflow-y-auto pr-2"></div>
@@ -230,7 +220,7 @@
         </div>
     </div>
 
-    <!-- SECTION 4: STORE PAGE (ጥሬ እቃ እና የነባር ምርቶች ዝርዝር ብቻ - Password: 1213) -->
+    <!-- SECTION 4: STORE PAGE (ጥሬ እቃ እና የነባር ምርቶች ዝርዝር + በጥግ በኩል አድሚሽን መግቢያ) -->
     <div id="store-section" class="section hidden container mx-auto px-4 py-8">
         <div class="bg-gradient-to-r from-amber-800 to-amber-700 text-white p-6 rounded-t-2xl shadow flex justify-between items-center border-b-4 border-yellow-400">
             <div>
@@ -239,9 +229,17 @@
                 </h2>
                 <p class="text-xs text-amber-100 mt-0.5">በእስቶር ውስጥ የሚገኙ ጥሬ እቃዎች እና የተመረቱ እቃዎች ማከማቻ</p>
             </div>
-            <button onclick="showSection('shop')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-1 text-sm">
-                <i class="fa-solid fa-circle-xmark"></i> <span>እስቶር ዝጋ</span>
-            </button>
+            
+            <div class="flex items-center gap-2">
+                <!-- በጥግ በኩል የተደበቀ የአድሚሽን መግቢያ ቁልፍ -->
+                <button onclick="toggleAdmissionLogin()" class="bg-amber-900 hover:bg-black text-yellow-300 px-3 py-2 rounded-lg text-xs font-bold transition cursor-pointer border border-yellow-500/40 shadow flex items-center gap-1">
+                    <i class="fa-solid fa-boxes-packing"></i> <span>አድሚሽን</span>
+                </button>
+                
+                <button onclick="showSection('shop')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-1 text-xs">
+                    <i class="fa-solid fa-circle-xmark"></i> <span>ዝጋ</span>
+                </button>
+            </div>
         </div>
 
         <div class="bg-white p-6 rounded-b-2xl shadow border border-gray-200">
@@ -253,30 +251,59 @@
         </div>
     </div>
 
-    <!-- SECTION 5: STORE ADMISSION PAGE (የእቃ መጨመሪያና መቀነሻ - Card ID: 1030) -->
+    <!-- SECTION 5: STORE ADMISSION PAGE (አዲስ ጥሬ እቃ ማስገቢያ ፎርም + ብዛት ማስተካከያ) -->
     <div id="admission-section" class="section hidden container mx-auto px-4 py-8">
         <div class="bg-gradient-to-r from-orange-800 to-orange-700 text-white p-6 rounded-t-2xl shadow flex justify-between items-center border-b-4 border-yellow-400">
             <div>
                 <h2 class="text-2xl font-black tracking-wide flex items-center gap-2">
                     <i class="fa-solid fa-boxes-packing text-yellow-300"></i> <span>ቪሮ እስቶር አድሚሽን (Store Admission)</span>
                 </h2>
-                <p class="text-xs text-orange-100 mt-0.5">የካርድ አይዲ: 1030 | በእስቶር ያሉ እቃዎችን ብዛት መጨመሪያና መቀነሻ ገፅ</p>
+                <p class="text-xs text-orange-100 mt-0.5">አዲስ እቃ ማስገቢያ እና በእስቶር ያሉ እቃዎችን ብዛት መቆጣጠሪያ</p>
             </div>
-            <button onclick="showSection('shop')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-1 text-sm">
-                <i class="fa-solid fa-circle-xmark"></i> <span>አድሚሽን ዝጋ</span>
+            <button onclick="showSection('store')" class="bg-amber-900 hover:bg-black text-white px-4 py-2 rounded-lg font-bold shadow transition cursor-pointer flex items-center gap-1 text-sm border border-amber-500/50">
+                <i class="fa-solid fa-arrow-left"></i> <span>ወደ እስቶር ተመለስ</span>
             </button>
         </div>
 
-        <div class="bg-white p-6 rounded-b-2xl shadow border border-gray-200">
-            <h3 class="text-lg font-extrabold text-orange-900 mb-4 border-b pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-list-check text-orange-600"></i> የእቃዎችን ብዛት ማስተካከያ (Stock Quantity Manager)
-            </h3>
+        <div class="bg-white p-6 rounded-b-2xl shadow border border-gray-200 space-y-8">
             
-            <div id="admission-items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <!-- አዲስ እቃ/ጥሬ እቃ ወደ እስቶር ማስገቢያ ፎርም -->
+            <div class="bg-orange-50 border border-orange-200 p-5 rounded-2xl">
+                <h3 class="text-base font-extrabold text-orange-900 mb-3 flex items-center gap-2 border-b border-orange-200 pb-2">
+                    <i class="fa-solid fa-circle-plus text-orange-600"></i> አዲስ ጥሬ እቃ / ምርት ወደ እስቶር ማስገቢያ
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">የእቃው / ጥሬ እቃው ስም *</label>
+                        <input id="admission-new-name" placeholder="ለምሳሌ፡ እንጨት / ስፖንጅ" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-white focus:outline-orange-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">የሚገባው ብዛት *</label>
+                        <input id="admission-new-stock" type="number" min="1" placeholder="1" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-white focus:outline-orange-600">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">የእቃው ፎቶ *</label>
+                        <input type="file" id="admission-new-img" accept="image/*" class="w-full text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:bg-orange-200 file:text-orange-800 cursor-pointer bg-white border border-gray-300">
+                    </div>
+                </div>
+                <button onclick="addAdmissionRawItem()" class="mt-4 bg-orange-600 hover:bg-orange-700 text-white font-bold px-6 py-2 rounded-lg shadow transition cursor-pointer flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-download"></i> <span>እቃውን ወደ እስቶር አስገባ</span>
+                </button>
+            </div>
+
+            <!-- በእስቶር ያሉ እቃዎችን ብዛት መጨመሪያና መቀነሻ -->
+            <div>
+                <h3 class="text-lg font-extrabold text-orange-900 mb-4 border-b pb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-orange-600"></i> የእቃዎችን ብዛት ማስተካከያ (Stock Quantity Manager)
+                </h3>
+                
+                <div id="admission-items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+
         </div>
     </div>
 
-    <!-- ORDER MODAL (የክፍያና ማዘዣ ቅጽ) -->
+    <!-- ORDER MODAL -->
     <div id="order-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
         <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeOrderModal()"></div>
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
@@ -320,7 +347,6 @@
                     <input type="url" id="customer-receipt-link" placeholder="https://..." class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 text-sm">
                 </div>
 
-                <!-- GPS Location Button -->
                 <div class="mb-4">
                     <button type="button" onclick="getLocation()" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-2.5 rounded-lg font-bold shadow transition flex items-center justify-center gap-2 cursor-pointer text-sm">
                         <span id="location-status"><i class="fa-solid fa-location-crosshairs"></i> <span>ትክክለኛ መገኛ ቦታ ይጫኑ (📍 GPS) *</span></span>
@@ -359,6 +385,7 @@
         let customerOrders = JSON.parse(localStorage.getItem('viro_orders')) || [];
 
         let uploadedImageBase64 = "";
+        let admissionImageBase64 = "";
         let tempLogoBase64 = "";
         let tempSliderBase64 = "";
         let selectedProductIndex = null;
@@ -436,6 +463,15 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(event) { uploadedImageBase64 = event.target.result; };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('admission-new-img').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) { admissionImageBase64 = event.target.result; };
                 reader.readAsDataURL(file);
             }
         });
@@ -518,7 +554,7 @@
                             <div class="mt-4">
                                 <h3 class="font-bold text-xl text-gray-800 mb-1">${p.name}</h3>
                                 <div class="flex justify-between items-center mb-2">
-                                    <p class="text-green-700 font-black text-lg">${Number(p.price).toLocaleString()} ETB</p>
+                                    <p class="text-green-700 font-black text-lg">${Number(p.price || 0).toLocaleString()} ETB</p>
                                     <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">ስቶር ላይ ያለ: ${p.stock || 0}</span>
                                 </div>
                             </div>
@@ -537,7 +573,7 @@
                         <img src="${p.img}" class="w-11 h-11 object-cover rounded-lg bg-white">
                         <div>
                             <p class="font-bold text-sm text-gray-800">${p.name}</p>
-                            <p class="text-xs text-green-700 font-bold">${Number(p.price).toLocaleString()} ብር (ብዛት: ${p.stock || 0})</p>
+                            <p class="text-xs text-green-700 font-bold">${Number(p.price || 0).toLocaleString()} ብር (ብዛት: ${p.stock || 0})</p>
                         </div>
                     </div>
                     <button onclick="deleteProduct(${i})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg text-xs font-bold cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
@@ -545,7 +581,7 @@
             `).join('');
         }
 
-        // --- 1. STORE LOGIC (የይለፍ ቃል: 1213) ---
+        // --- 1. STORE LOGIC ---
         function toggleStoreLogin() {
             document.getElementById('store-login-box').classList.toggle('hidden');
             document.getElementById('admission-login-box').classList.add('hidden');
@@ -576,7 +612,7 @@
             `).join('');
         }
 
-        // --- 2. STORE ADMISSION LOGIC (Card ID: 1030 / Pass: 1030) ---
+        // --- 2. STORE ADMISSION LOGIC ---
         function toggleAdmissionLogin() {
             document.getElementById('admission-login-box').classList.toggle('hidden');
             document.getElementById('store-login-box').classList.add('hidden');
@@ -593,6 +629,33 @@
             } else {
                 document.getElementById('admission-login-error').classList.remove('hidden');
             }
+        }
+
+        function addAdmissionRawItem() {
+            const name = document.getElementById('admission-new-name').value.trim();
+            const stock = parseInt(document.getElementById('admission-new-stock').value) || 0;
+
+            if (!name || stock <= 0) return alert("⚠️ እባክዎን የእቃውን ስም እና ትክክለኛ ብዛት ያስገቡ!");
+
+            const newImg = admissionImageBase64 || "https://images.unsplash.com/photo-1581428982868-e410dd047a90?w=500";
+
+            products.push({
+                name: name,
+                price: "0",
+                stock: stock,
+                payment: "ጥሬ እቃ",
+                img: newImg
+            });
+
+            localStorage.setItem('viro_products', JSON.stringify(products));
+            renderAdmissionItems();
+            renderProducts();
+            
+            alert("✅ አዲስ እቃ ወደ እስቶር ገብቷል!");
+            document.getElementById('admission-new-name').value = "";
+            document.getElementById('admission-new-stock').value = "";
+            document.getElementById('admission-new-img').value = "";
+            admissionImageBase64 = "";
         }
 
         function renderAdmissionItems() {
@@ -749,7 +812,7 @@
             selectedProductIndex = index;
             const p = products[index];
             document.getElementById('modal-product-name').innerText = p.name;
-            document.getElementById('modal-product-price').innerText = `${Number(p.price).toLocaleString()} ብር`;
+            document.getElementById('modal-product-price').innerText = `${Number(p.price || 0).toLocaleString()} ብር`;
             document.getElementById('modal-payment-info').innerText = `💳 ${p.payment || 'Payment Required'}`;
             document.getElementById('order-item-name').value = p.name;
             
