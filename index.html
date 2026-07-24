@@ -3,111 +3,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>መረጃ መላኪያ ፎርም</title>
+  <title>Viro Garden Furniture</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       font-family: Arial, sans-serif;
-      background-color: #f4f6f9;
+    }
+    body {
+      background-color: #f0f2f5;
+      padding: 15px;
+      margin: 0;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 20px;
     }
-    .form-container {
+    .container {
       background: #ffffff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 450px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-weight: bold;
       color: #333;
     }
     input, select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      box-sizing: border-box;
-      font-size: 14px;
+      font-size: 15px;
+      outline: none;
     }
-    button {
+    input:focus, select:focus {
+      border-color: #1a73e8;
+    }
+    /* የGPS አዝራር */
+    .gps-btn {
       width: 100%;
       padding: 12px;
-      background-color: #0088cc;
+      background-color: #0d3b66;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    /* የመላኪያ አረንጓዴ አዝራር */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #0d6832;
       color: white;
       border: none;
       border-radius: 6px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s;
     }
-    button:hover {
-      background-color: #006699;
+    .submit-btn:hover {
+      background-color: #094d24;
     }
   </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <h2>የክፍያ መረጃ መሙያ</h2>
-    <form id="paymentForm">
-      
+  <div class="container">
+    <form id="orderForm">
+
       <div class="form-group">
-        <label for="phone">ስልክ ቁጥር *</label>
-        <input type="tel" id="phone" placeholder="0911..." required>
+        <label>ስልክ ቁጥር *</label>
+        <input type="tel" id="phone" value="0961807959" placeholder="ስልክ ቁጥር ያስገቡ" required>
       </div>
 
       <div class="form-group">
-        <label for="paymentMethod">የክፍያ መንገድ ይምረጡ *</label>
+        <label>የክፍያ መንገድ ይምረጡ *</label>
         <select id="paymentMethod" required>
-          <option value="">-- ይምረጡ --</option>
-          <option value="ሲቢኢ ብር (CBE Birr)">ሲቢኢ ብር (CBE Birr / Commercial Bank)</option>
+          <option value="ሲቢኢ ብር (CBE Birr / Commercial Bank)">ሲቢኢ ብር (CBE Birr / Commercial Bank)</option>
           <option value="ቴሌብር (Telebirr)">ቴሌብር (Telebirr)</option>
           <option value="አዋሽ ባንክ (Awash Bank)">አዋሽ ባንክ (Awash Bank)</option>
-          <option value="አቢሲኒያ ባንክ (Bank of Abyssinia)">አቢሲኒያ ባንክ (Bank of Abyssinia)</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="refNo">የክፍያ ትራንዛክሽን ቁጥር / Ref No. *</label>
-        <input type="text" id="refNo" placeholder="ምሳሌ፡ TXN123456" required>
+        <label>የክፍያ ትራንዛክሽን ቁጥር / Ref No. (ኦንላይን ከከፈሉ)</label>
+        <input type="text" id="refNo" placeholder="የትራንዛክሽን ቁጥር ያስገቡ">
       </div>
 
-      <button type="submit" id="submitBtn">መረጃውን ላክ</button>
+      <!-- የGPS Fixed አዝራር -->
+      <button type="button" class="gps-btn" id="gpsBtn">
+        📍 GPS Fixed!
+      </button>
+
+      <!-- ዋናው መላኪያ አዝራር -->
+      <button type="submit" class="submit-btn" id="submitBtn">
+        በመላክ ላይ... እባክዎ ይወቁ...
+      </button>
 
     </form>
   </div>
 
   <script>
-    // የገባው Bot Token እና Chat ID
+    // የአንተ ቦት መረጃዎች
     const BOT_TOKEN = '8762925667:AAHOMw311XdcubZWs-dBI1Xz7uS7QgKOVK8';
     const CHAT_ID = '7303942788';
 
-    const form = document.getElementById('paymentForm');
+    const form = document.getElementById('orderForm');
     const submitBtn = document.getElementById('submitBtn');
 
     form.addEventListener('submit', async function(e) {
-      e.preventDefault(); // ፔጁ እንዳይነሳ (Reload እንዳይሆን) ይከለክላል
+      e.preventDefault(); // ገጹ እንዳይነሳ (Reload እንዳይሆን) ይከለክላል
 
-      const originalBtnText = submitBtn.innerText;
+      // ቁልፉን መጫን እንዳይደገም
+      const originalText = submitBtn.innerText;
       submitBtn.innerText = 'በመላክ ላይ... እባክዎ ይጠበቁ';
       submitBtn.disabled = true;
 
-      const phone = document.getElementById('phone').value;
-      const paymentMethod = document.getElementById('paymentMethod').value;
-      const refNo = document.getElementById('refNo').value;
+      // መረጃዎችን መውሰድ
+      const phone = document.getElementById('phone').value || 'አልተሞላም';
+      const paymentMethod = document.getElementById('paymentMethod').value || 'አልተመረጠም';
+      const refNo = document.getElementById('refNo').value || 'አልተሞላም';
 
-      // ወደ ቴሌግራም የሚላከው መልዕክት አጻጻፍ
-      const messageText = `📌 አዲስ የክፍያ መረጃ ደርሷል!\n\n📱 ስልክ ቁጥር: ${phone}\n💳 የክፍያ መንገድ: ${paymentMethod}\n🧾 የትራንዛክሽን ቁጥር: ${refNo}`;
+      // ወደ ቴሌግራም የሚላክ መልዕክት (Plain text/No parse_mode የስንታክስ ኤረር እንዳይፈጥር)
+      const messageText = `📌 አዲስ ትዕዛዝ ደርሷል!\n\n📱 ስልክ ቁጥር: ${phone}\n💳 የክፍያ መንገድ: ${paymentMethod}\n🧾 Ref No: ${refNo}`;
 
       const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
@@ -127,16 +157,15 @@
 
         if (data.ok) {
           alert("መረጃው በትክክል ተልኳል!");
-          form.reset();
         } else {
-          console.error("Telegram API Error:", data);
-          alert("ስህተት፡ " + (data.description || "መረጃውን መላክ አልተቻለም"));
+          console.error("Telegram Error:", data);
+          alert("ስህተት አጋጥሟል፡ " + (data.description || "መረጃውን መላክ አልተቻለም"));
         }
       } catch (error) {
         console.error("Network Error:", error);
-        alert("የኢንተርኔት ግንኙነት ችግር አጋጥሟል! እባክዎ ድጋሚ ይሞክሩ።");
+        alert("የኔትወርክ ስህተት አጋጥሟል! እባክዎ ድጋሚ ይሞክሩ።");
       } finally {
-        submitBtn.innerText = originalBtnText;
+        submitBtn.innerText = originalText;
         submitBtn.disabled = false;
       }
     });
