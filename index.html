@@ -178,7 +178,7 @@
             </button>
         </div>
 
-        <!-- NEW: ADMIN STATS OVERVIEW -->
+        <!-- ADMIN STATS OVERVIEW -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
             <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
                 <p class="text-xs font-bold text-gray-500">አጠቃላይ ምርቶች</p>
@@ -275,7 +275,7 @@
         </div>
     </div>
 
-    <!-- NEW: EDIT PRODUCT MODAL -->
+    <!-- EDIT PRODUCT MODAL -->
     <div id="edit-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
         <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeEditModal()"></div>
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
@@ -472,6 +472,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // ቦትህ መልእክት እንዲልክልህ BOT_TOKEN ቦታ ላይ የቴሌግራም ቦትህን API Token ተካ
         const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
         const CHAT_ID = '7303942788'; 
 
@@ -592,11 +593,11 @@
         });
 
         function updateCompanyLogo() {
-            if (!tempLogoBase64) return alert("⚠️ Please select image first!");
+            if (!tempLogoBase64) return alert("⚠️ እባክዎ አስቀድመው ፎቶ ይምረጡ!");
             companyLogo = tempLogoBase64;
             localStorage.setItem('viro_logo', companyLogo);
             applyLogo();
-            alert("✅ Logo Updated!");
+            alert("✅ ሎጎው በተሳካ ሁኔታ ተቀይሯል!");
         }
 
         function addSliderImage() {
@@ -701,7 +702,6 @@
             }
         }
 
-        /* NEW: EDIT PRODUCT LOGIC */
         function openEditModal(index) {
             const p = products[index];
             document.getElementById('edit-product-index').value = index;
