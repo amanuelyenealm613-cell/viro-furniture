@@ -178,22 +178,6 @@
             </button>
         </div>
 
-        <!-- ADMIN STATS OVERVIEW -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
-                <p class="text-xs font-bold text-gray-500">አጠቃላይ ምርቶች</p>
-                <p id="stats-total-products" class="text-2xl font-black text-green-800">0</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
-                <p class="text-xs font-bold text-gray-500">በእስቶር ያሉ እቃዎች</p>
-                <p id="stats-total-stock" class="text-2xl font-black text-amber-600">0</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center col-span-2 sm:col-span-1">
-                <p class="text-xs font-bold text-gray-500">የካቢኔ ትዕዛዞች</p>
-                <p id="stats-total-orders" class="text-2xl font-black text-blue-600">0</p>
-            </div>
-        </div>
-
         <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm mt-6 mb-6">
             <h3 class="font-extrabold text-green-900 mb-3 text-base flex items-center gap-2 border-b pb-2">
                 <i class="fa-solid fa-clipboard-list text-yellow-600"></i> የደንበኞች ትዕዛዞች እና የክፍያ መቆጣጠሪያ
@@ -275,40 +259,6 @@
         </div>
     </div>
 
-    <!-- EDIT PRODUCT MODAL -->
-    <div id="edit-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50 transition-all duration-300">
-        <div class="modal-overlay absolute w-full h-full bg-gray-950 opacity-60" onclick="closeEditModal()"></div>
-        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto max-h-[90vh] p-6 border border-gray-100">
-            <div class="flex justify-between items-center border-b pb-2 mb-4">
-                <h3 class="text-lg font-bold text-green-800"><i class="fa-solid fa-pen-to-square"></i> የምርት መረጃ ማስተካከያ</h3>
-                <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-600 text-2xl font-bold cursor-pointer">&times;</button>
-            </div>
-            
-            <input type="hidden" id="edit-product-index">
-            <div class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">የምርት ስም</label>
-                    <input id="edit-name" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-gray-50 focus:outline-green-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">የሚገኝበት ቢሮ/ክፍል</label>
-                    <input id="edit-office" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-gray-50 focus:outline-green-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">ዋጋ (ብር)</label>
-                    <input id="edit-price" type="number" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-gray-50 focus:outline-green-600">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">የእስቶር ብዛት</label>
-                    <input id="edit-stock" type="number" class="w-full border border-gray-300 p-2 rounded-lg text-sm bg-gray-50 focus:outline-green-600">
-                </div>
-                <button onclick="saveProductEdit()" class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-2.5 rounded-lg shadow transition mt-2 cursor-pointer">
-                    <i class="fa-solid fa-floppy-disk"></i> ለውጦችን መዝግብ
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- SECTION 4: STORE PAGE -->
     <div id="store-section" class="section hidden container mx-auto px-4 py-8">
         <div class="bg-gradient-to-r from-amber-800 to-amber-700 text-white p-6 rounded-t-2xl shadow flex justify-between items-center border-b-4 border-yellow-400">
@@ -352,6 +302,7 @@
         </div>
 
         <div class="bg-white p-6 rounded-b-2xl shadow border border-gray-200 space-y-8">
+            <!-- አዲስ የተጨመረ፦ የደንበኞች ኦንላይን ክፍያ መረጃዎች ማረጋገጫ በአድሚሽን በኩል -->
             <div class="bg-yellow-50 border border-yellow-300 p-5 rounded-2xl">
                 <h3 class="text-base font-extrabold text-yellow-900 mb-3 flex items-center gap-2 border-b border-yellow-300 pb-2">
                     <i class="fa-solid fa-file-invoice-dollar text-amber-700"></i> የደንበኞች ኦንላይን ክፍያ እና የትራንዛክሽን ማረጋገጫዎች
@@ -440,6 +391,16 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1">የከፈሉበት የደረሰኝ ፎቶ *</label>
+                    <input type="file" id="customer-receipt-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
+                </div>
+
+                <div class="mb-3">
+                    <label class="block text-sm text-gray-600 font-semibold mb-1">የፋይዳ (መታወቂያ) ፎቶ *</label>
+                    <input type="file" id="customer-fayda-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
+                </div>
+
+                <div class="mb-3">
                     <label class="block text-sm text-gray-600 font-semibold mb-1">የደረሰኝ ሊንክ (ካለ)</label>
                     <input type="url" id="customer-receipt-link" placeholder="https://..." class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 text-sm">
                 </div>
@@ -462,7 +423,6 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // ቦትህ መልእክት እንዲልክልህ BOT_TOKEN ቦታ ላይ የቴሌግራም ቦትህን API Token ተካ
         const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
         const CHAT_ID = '7303942788'; 
 
@@ -488,13 +448,6 @@
         let tempLogoBase64 = "";
         let tempSliderBase64 = "";
         let selectedProductIndex = null;
-
-        function updateAdminStats() {
-            document.getElementById('stats-total-products').innerText = products.length;
-            const totalStock = products.reduce((acc, curr) => acc + (parseInt(curr.stock) || 0), 0);
-            document.getElementById('stats-total-stock').innerText = totalStock;
-            document.getElementById('stats-total-orders').innerText = customerOrders.length;
-        }
 
         function changeSlide() {
             if(sliderImages.length > 0) {
@@ -583,11 +536,11 @@
         });
 
         function updateCompanyLogo() {
-            if (!tempLogoBase64) return alert("⚠️ እባክዎ አስቀድመው ፎቶ ይምረጡ!");
+            if (!tempLogoBase64) return alert("⚠️ Please select image first!");
             companyLogo = tempLogoBase64;
             localStorage.setItem('viro_logo', companyLogo);
             applyLogo();
-            alert("✅ ሎጎው በተሳካ ሁኔታ ተቀይሯል!");
+            alert("✅ Logo Updated!");
         }
 
         function addSliderImage() {
@@ -631,7 +584,6 @@
             if (sectionId === 'admin') {
                 document.getElementById('admin-panel-section').classList.remove('hidden');
                 renderAdminOrders();
-                updateAdminStats();
             } else if (sectionId === 'store') {
                 document.getElementById('store-section').classList.remove('hidden');
                 renderStoreRawItems();
@@ -645,6 +597,7 @@
             if(sectionId === 'shop') renderProducts();
         }
 
+        // SEARCH & FILTER LOGIC
         function setCategory(cat) {
             selectedCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
@@ -670,7 +623,6 @@
         function renderProducts() {
             localStorage.setItem('viro_products', JSON.stringify(products));
             filterProducts();
-            updateAdminStats();
 
             const adminList = document.getElementById('admin-product-list');
             if(adminList) {
@@ -683,40 +635,10 @@
                                 <p class="text-xs text-green-700 font-bold">${Number(p.price || 0).toLocaleString()} ብር (ብዛት: ${p.stock || 0})</p>
                             </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button onclick="openEditModal(${i})" class="bg-blue-50 hover:bg-blue-100 text-blue-600 p-2 rounded-lg text-xs font-bold cursor-pointer"><i class="fa-solid fa-pen"></i></button>
-                            <button onclick="deleteProduct(${i})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg text-xs font-bold cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
+                        <button onclick="deleteProduct(${i})" class="bg-red-50 hover:bg-red-100 text-red-600 p-2 rounded-lg text-xs font-bold cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 `).join('');
             }
-        }
-
-        function openEditModal(index) {
-            const p = products[index];
-            document.getElementById('edit-product-index').value = index;
-            document.getElementById('edit-name').value = p.name;
-            document.getElementById('edit-office').value = p.office || '';
-            document.getElementById('edit-price').value = p.price;
-            document.getElementById('edit-stock').value = p.stock;
-            document.getElementById('edit-modal').classList.remove('opacity-0', 'pointer-events-none');
-        }
-
-        function closeEditModal() {
-            document.getElementById('edit-modal').classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        function saveProductEdit() {
-            const index = document.getElementById('edit-product-index').value;
-            products[index].name = document.getElementById('edit-name').value.trim();
-            products[index].office = document.getElementById('edit-office').value.trim();
-            products[index].price = document.getElementById('edit-price').value.trim();
-            products[index].stock = parseInt(document.getElementById('edit-stock').value) || 0;
-
-            localStorage.setItem('viro_products', JSON.stringify(products));
-            renderProducts();
-            closeEditModal();
-            alert("✅ የምርት መረጃው ተስተካክሏል!");
         }
 
         function renderProductsList(listToRender) {
@@ -771,6 +693,7 @@
             });
         }
 
+        // STORE LOGIC
         function toggleStoreLogin() {
             document.getElementById('store-login-box').classList.toggle('hidden');
             document.getElementById('admission-login-box').classList.add('hidden');
@@ -802,6 +725,7 @@
             `).join('');
         }
 
+        // STORE ADMISSION LOGIC
         function toggleAdmissionLogin() {
             document.getElementById('admission-login-box').classList.toggle('hidden');
             document.getElementById('store-login-box').classList.add('hidden');
@@ -820,6 +744,7 @@
             }
         }
 
+        // አዲስ፦ በአድሚሽን ገጽ ላይ የኦንላይን ክፍያዎች ማሳያ
         function renderAdmissionPayments() {
             const container = document.getElementById('admission-payments-list');
             if(!container) return;
@@ -899,6 +824,7 @@
             renderProducts();
         }
 
+        // Admin Orders List & Actions
         function renderAdminOrders() {
             const list = document.getElementById('admin-orders-list');
             if (customerOrders.length === 0) {
@@ -944,7 +870,6 @@
                 localStorage.setItem('viro_orders', JSON.stringify(customerOrders));
                 renderAdminOrders();
                 renderAdmissionPayments();
-                updateAdminStats();
             } catch (err) {
                 alert("⚠️ መልእክቱን መላክ አልተቻለም!");
             }
@@ -965,7 +890,6 @@
                 localStorage.setItem('viro_orders', JSON.stringify(customerOrders));
                 renderAdminOrders();
                 renderAdmissionPayments();
-                updateAdminStats();
             } catch (err) {
                 alert("⚠️ መልእክቱን መላክ አልተቻለም!");
             }
@@ -1086,6 +1010,7 @@
             const txnId = document.getElementById('customer-txn-id').value || "ያልተገለጸ";
             const rLink = document.getElementById('customer-receipt-link').value || "የለም";
 
+            // በአድሚሽን እና በአድሚን ገጽ ላይ እንዲቀመጥ
             customerOrders.push({
                 product: pName, 
                 qty: cQty, 
@@ -1114,6 +1039,24 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
                 });
+
+                const receiptInput = document.getElementById('customer-receipt-file');
+                if (receiptInput.files.length > 0) {
+                    const fData = new FormData();
+                    fData.append('chat_id', CHAT_ID);
+                    fData.append('photo', receiptInput.files[0]);
+                    fData.append('caption', `🧾 የክፍያ ደረሰኝ ፎቶ (ከ ${cName} - Ref: ${txnId})`);
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
+                }
+
+                const faydaInput = document.getElementById('customer-fayda-file');
+                if (faydaInput.files.length > 0) {
+                    const fData = new FormData();
+                    fData.append('chat_id', CHAT_ID);
+                    fData.append('photo', faydaInput.files[0]);
+                    fData.append('caption', `🪪 የፋይዳ (መታወቂያ) ፎቶ (ከ ${cName})`);
+                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
+                }
 
                 alert('✅ ትዕዛዝዎ እና የክፍያ መረጃዎ በተሳካ ሁኔታ ተልኳል!');
                 document.getElementById('order-form').reset();
