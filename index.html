@@ -302,7 +302,6 @@
         </div>
 
         <div class="bg-white p-6 rounded-b-2xl shadow border border-gray-200 space-y-8">
-            <!-- አዲስ የተጨመረ፦ የደንበኞች ኦንላይን ክፍያ መረጃዎች ማረጋገጫ በአድሚሽን በኩል -->
             <div class="bg-yellow-50 border border-yellow-300 p-5 rounded-2xl">
                 <h3 class="text-base font-extrabold text-yellow-900 mb-3 flex items-center gap-2 border-b border-yellow-300 pb-2">
                     <i class="fa-solid fa-file-invoice-dollar text-amber-700"></i> የደንበኞች ኦንላይን ክፍያ እና የትራንዛክሽን ማረጋገጫዎች
@@ -423,7 +422,7 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        const BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
+        const BOT_TOKEN = '8762925667:AAHOMw311XdcubZWs-dBI1Xz7uS7QgKOVK8'; 
         const CHAT_ID = '7303942788'; 
 
         let currentLanguage = localStorage.getItem('viro_lang') || 'am';
@@ -597,7 +596,6 @@
             if(sectionId === 'shop') renderProducts();
         }
 
-        // SEARCH & FILTER LOGIC
         function setCategory(cat) {
             selectedCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
@@ -693,7 +691,6 @@
             });
         }
 
-        // STORE LOGIC
         function toggleStoreLogin() {
             document.getElementById('store-login-box').classList.toggle('hidden');
             document.getElementById('admission-login-box').classList.add('hidden');
@@ -725,7 +722,6 @@
             `).join('');
         }
 
-        // STORE ADMISSION LOGIC
         function toggleAdmissionLogin() {
             document.getElementById('admission-login-box').classList.toggle('hidden');
             document.getElementById('store-login-box').classList.add('hidden');
@@ -744,7 +740,6 @@
             }
         }
 
-        // አዲስ፦ በአድሚሽን ገጽ ላይ የኦንላይን ክፍያዎች ማሳያ
         function renderAdmissionPayments() {
             const container = document.getElementById('admission-payments-list');
             if(!container) return;
@@ -824,7 +819,6 @@
             renderProducts();
         }
 
-        // Admin Orders List & Actions
         function renderAdminOrders() {
             const list = document.getElementById('admin-orders-list');
             if (customerOrders.length === 0) {
@@ -1010,7 +1004,6 @@
             const txnId = document.getElementById('customer-txn-id').value || "ያልተገለጸ";
             const rLink = document.getElementById('customer-receipt-link').value || "የለም";
 
-            // በአድሚሽን እና በአድሚን ገጽ ላይ እንዲቀመጥ
             customerOrders.push({
                 product: pName, 
                 qty: cQty, 
