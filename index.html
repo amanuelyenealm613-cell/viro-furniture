@@ -800,7 +800,7 @@
             admissionImageBase64 = "";
         }
 
-        // በአድሚሽን ገጽ ላይ የእስቶር እቃዎችን ማሳያ
+        // በአድሚሽን ገጽ ላይ የእስቶር እቃዎችን ማሳያ (ከመሰረዣ ቁልፍ ጋር)
         function renderAdmissionItems() {
             const container = document.getElementById('admission-items-container');
             if (!container) return;
@@ -809,10 +809,15 @@
                 return;
             }
             container.innerHTML = storeRawItems.map((p, i) => `
-                <div class="bg-orange-50 border border-orange-200 p-4 rounded-xl flex items-center gap-4 shadow-sm">
+                <div class="bg-orange-50 border border-orange-200 p-4 rounded-xl flex items-center gap-4 shadow-sm relative">
                     <img src="${p.img}" class="w-20 h-20 object-cover rounded-lg bg-white border">
                     <div class="flex-1">
-                        <h4 class="font-bold text-gray-800 text-base mb-0.5">${p.name}</h4>
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-bold text-gray-800 text-base mb-0.5">${p.name}</h4>
+                            <button onclick="deleteRawItem(${i})" class="bg-red-100 hover:bg-red-200 text-red-600 p-1.5 rounded-lg text-xs font-bold cursor-pointer transition" title="እቃውን ሰርዝ">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
                         <p class="text-xs text-blue-800 font-bold mb-1">🏢 ቢሮ/ክፍል፦ ${p.office || 'ዋና ቢሮ'}</p>
                         <p class="text-xs text-gray-500 mb-2">ያለው ብዛት: <span class="font-bold text-orange-700">${p.stock || 0}</span></p>
                         
@@ -824,6 +829,16 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        // እቃ ከእስቶር አድሚሽን ማጥፊያ ተግባር
+        function deleteRawItem(index) {
+            if (confirm("ይህንን እቃ ከእስቶር ማጥፋት ይፈልጋሉ?")) {
+                storeRawItems.splice(index, 1);
+                localStorage.setItem('viro_store_items', JSON.stringify(storeRawItems));
+                renderAdmissionItems();
+                renderStoreRawItems();
+            }
         }
 
         function updateStock(index, amount) {
