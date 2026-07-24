@@ -440,16 +440,6 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1">የከፈሉበት የደረሰኝ ፎቶ *</label>
-                    <input type="file" id="customer-receipt-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
-                </div>
-
-                <div class="mb-3">
-                    <label class="block text-sm text-gray-600 font-semibold mb-1">የፋይዳ (መታወቂያ) ፎቶ *</label>
-                    <input type="file" id="customer-fayda-file" accept="image/*" required class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-100 cursor-pointer">
-                </div>
-
-                <div class="mb-3">
                     <label class="block text-sm text-gray-600 font-semibold mb-1">የደረሰኝ ሊንክ (ካለ)</label>
                     <input type="url" id="customer-receipt-link" placeholder="https://..." class="w-full border border-gray-300 p-2 rounded-md focus:outline-green-600 bg-gray-50 text-sm">
                 </div>
@@ -1124,24 +1114,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: CHAT_ID, text: message, parse_mode: 'Markdown' })
                 });
-
-                const receiptInput = document.getElementById('customer-receipt-file');
-                if (receiptInput.files.length > 0) {
-                    const fData = new FormData();
-                    fData.append('chat_id', CHAT_ID);
-                    fData.append('photo', receiptInput.files[0]);
-                    fData.append('caption', `🧾 የክፍያ ደረሰኝ ፎቶ (ከ ${cName} - Ref: ${txnId})`);
-                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
-                }
-
-                const faydaInput = document.getElementById('customer-fayda-file');
-                if (faydaInput.files.length > 0) {
-                    const fData = new FormData();
-                    fData.append('chat_id', CHAT_ID);
-                    fData.append('photo', faydaInput.files[0]);
-                    fData.append('caption', `🪪 የፋይዳ (መታወቂያ) ፎቶ (ከ ${cName})`);
-                    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, { method: 'POST', body: fData });
-                }
 
                 alert('✅ ትዕዛዝዎ እና የክፍያ መረጃዎ በተሳካ ሁኔታ ተልኳል!');
                 document.getElementById('order-form').reset();
